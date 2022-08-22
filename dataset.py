@@ -1,10 +1,12 @@
 import ee
 
 class GetIndices():
-  def __init__(self, args):
+  def __init__(self, args, index, sum=False):
     
     self.args = args
-    self.roi = ee.FeatureCollection(self.args)
+    self.sum = sum
+    self.index = index
+    self.roi = ee.FeatureCollection(self.args.roi_dir)
 
     self.raw_data = self.filter_data()
     self.seasonal_data = self.seasonal_filter()
@@ -13,7 +15,7 @@ class GetIndices():
 
 
   def filter_data(self):
-    if self.args.index == 'TCI':
+    if self.index == 'TCI':
       MODIS_LST = self.args.terra_LST.merge(self.args.aqua_LST)\
                                        .filterBounds(self.roi)\
                                        .select('LST_Day_1km') 
@@ -23,7 +25,7 @@ class GetIndices():
                                           .set("system:time_start", img.get("system:time_start")))
 
 
-    elif self.args.index == 'VCI':  
+    elif self.index == 'VCI':  
       MODIS_NDVI = self.args.terra_NDVI.merge(self.args.aqua_NDVI)\
                                           .filterBounds(self.roi) \
                                           .select('NDVI')  
@@ -32,7 +34,7 @@ class GetIndices():
                                             .set("system:time_start", img.get("system:time_start")))
                   
       
-    elif self.args.index == 'ETCI':
+    elif self.index == 'ETCI':
       MODIS_ET = self.args.modis_ET\
                             .filterBounds(self.roi) \
                             .select('ET')
@@ -41,12 +43,12 @@ class GetIndices():
                                           .set("system:time_start", img.get("system:time_start")))                      
 
 
-    elif self.args.index == 'PCI':
+    elif self.index == 'PCI':
       return self.args.precip \
                         .filterBounds(self.roi)\
                         .select('precipitationCal')            
     
-    elif self.args.index == 'SMCI':
+    elif self.index == 'SMCI':
       return self.args.sm \
                         .filterBounds(self.roi) \
                         .select('SoilMoi10_40cm_inst') 
@@ -68,7 +70,7 @@ class GetIndices():
         Monthly_data = self.seasonal_data.filter(ee.Filter.calendarRange(year, year, 'year')) \
                                          .filter(ee.Filter.calendarRange(month, month, 'month')) \
 
-        if self.args.sum == False:
+        if self.sum == False:
           monthly_data.append (Monthly_data.mean() \
                                            .set({'month': month, 'year': year}))
         else:
@@ -95,7 +97,7 @@ class GetIndices():
   def Compute_Index (self, image):
     # TCI = (max - avg) / (max - min)
     # VCI, PCI, ETCI = (avg - min) / (max - min)
-    if self.args.index =='TCI':
+    if self.index =='TCI':
       expression = '(max - avg) / (max - min)'
     else: 
       expression = '(avg - min) / (max - min)'
@@ -104,7 +106,7 @@ class GetIndices():
                             {'avg': image.select('avg'),
                             'min': image.select('min'),
                             'max': image.select('max')
-                            }).rename(self.args.index) 
+                            }).rename(self.index) 
   
   def get_scaled_index(self):
     Index_img = []

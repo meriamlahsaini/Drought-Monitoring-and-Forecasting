@@ -19,7 +19,6 @@ def get_main_args():
     arg("--years", type=list, default=[2012+i for i in range(11)], help="Study Period Range-years")
     arg("--months", type=list, default=[1, 2, 3, 4], help="Study Period Range-months")
     arg("--season", type=str, default='growing', help="Study Period Season")
-    arg("--index", type=str, default='TCI', help="Index to Compute")
-    arg("--sum", type=bool, default=False, help="Monthly aggregate method")
 
     return parser.parse_args(args=[])
+

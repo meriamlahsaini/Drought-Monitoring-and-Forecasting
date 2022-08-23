@@ -71,40 +71,40 @@ else:
         """
         )
     # Import libraries and functions               
-import ee
-import streamlit as st
-import geemap.foliumap as geemap
-from dataset import *
-from args import get_main_args
-ee.Initialize()
+    import ee
+    import streamlit as st
+    import geemap.foliumap as geemap
+    from dataset import *
+    from args import get_main_args
+    ee.Initialize()
 
-args = get_main_args()
-    
-roi = ee.FeatureCollection(args.roi_dir)
+    args = get_main_args()
 
-TCI = GetIndices(args, roi, index='TCI', sum=False).get_scaled_index()
-VCI = GetIndices(args, roi, index='VCI', sum=False).get_scaled_index()
-ETCI = GetIndices(args, roi, index='ETCI', sum=True).get_scaled_index()
-PCI  = GetIndices(args, roi, index='PCI', sum=True).get_scaled_index()
-SMCI = GetIndices(args, roi, index='SMCI', sum=False).get_scaled_index()
+    roi = ee.FeatureCollection(args.roi_dir)
+
+    TCI = GetIndices(args, roi, index='TCI', sum=False).get_scaled_index()
+    VCI = GetIndices(args, roi, index='VCI', sum=False).get_scaled_index()
+    ETCI = GetIndices(args, roi, index='ETCI', sum=True).get_scaled_index()
+    PCI  = GetIndices(args, roi, index='PCI', sum=True).get_scaled_index()
+    SMCI = GetIndices(args, roi, index='SMCI', sum=False).get_scaled_index()
 
 
-listOfVCIImages = VCI.toList(VCI.size())
-listOfTCIImages = TCI.toList(TCI.size())
-listOfPCIImages = PCI.toList(PCI.size())
-listOfETCIImages = ETCI.toList(ETCI.size())
-listOfSMCIImages = SMCI.toList(SMCI.size())
+    listOfVCIImages = VCI.toList(VCI.size())
+    listOfTCIImages = TCI.toList(TCI.size())
+    listOfPCIImages = PCI.toList(PCI.size())
+    listOfETCIImages = ETCI.toList(ETCI.size())
+    listOfSMCIImages = SMCI.toList(SMCI.size())
 
-VCI_image = ee.Image(listOfVCIImages.get(args.idx))
-TCI_image = ee.Image(listOfTCIImages.get(args.idx))
-PCI_image = ee.Image(listOfPCIImages.get(args.idx))
-ETCI_image = ee.Image(listOfETCIImages.get(args.idx))
-SMCI_image = ee.Image(listOfSMCIImages.get(args.idx))
+    VCI_image = ee.Image(listOfVCIImages.get(args.idx))
+    TCI_image = ee.Image(listOfTCIImages.get(args.idx))
+    PCI_image = ee.Image(listOfPCIImages.get(args.idx))
+    ETCI_image = ee.Image(listOfETCIImages.get(args.idx))
+    SMCI_image = ee.Image(listOfSMCIImages.get(args.idx))
 
-# Create an interactive map
-if args.visualize:
-    Map = geemap.Map(center=[-13.4751, 28.6304], zoom = 6, plugin_Draw=True, Draw_export=False)
-    Map.addLayer(VCI_image.clip(roi), args.vciVis, 'VCI, Jan 2012')
-    Map.to_streamlit()
-else:
-    print('Processing ended')
+    # Create an interactive map
+    if args.visualize:
+        Map = geemap.Map(center=[-13.4751, 28.6304], zoom = 6, plugin_Draw=True, Draw_export=False)
+        Map.addLayer(VCI_image.clip(roi), args.vciVis, 'VCI, Jan 2012')
+        Map.to_streamlit()
+    else:
+        print('Processing ended')

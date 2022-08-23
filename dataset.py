@@ -1,12 +1,12 @@
 import ee
 
 class GetIndices():
-  def __init__(self, args, index, sum=False):
+  def __init__(self, args, roi, index, sum=False):
     
     self.args = args
     self.sum = sum
     self.index = index
-    self.roi = ee.FeatureCollection(self.args.roi_dir)
+    self.roi = roi
 
     self.raw_data = self.filter_data()
     self.seasonal_data = self.seasonal_filter()

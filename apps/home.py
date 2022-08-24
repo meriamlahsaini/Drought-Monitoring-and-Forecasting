@@ -53,6 +53,7 @@ SMCI = GetIndices(args, roi, index='SMCI', sum=False).get_scaled_index()
     import geemap.foliumap as geemap
     from dataset import GetIndices
     from args import get_main_args
+    from google.oauth2.credentials import Credentials
     
     #set up credentials
     credentials = Credentials(

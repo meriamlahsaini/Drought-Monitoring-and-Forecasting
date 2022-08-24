@@ -42,7 +42,7 @@ roi = ee.FeatureCollection(args.roi_dir)
 
 Map = geemap.Map(center=[-13.4751, 28.6304], zoom = 6) 
 Map.addLayer(roi, {'color': 'FFFFFF00'}, 'Zambia Boundary Map') 
-Map
+Map.to_streamlit()
 
         """
         )
@@ -58,7 +58,7 @@ Map
     roi = ee.FeatureCollection(args.roi_dir)
     Map = geemap.Map(center=[-13.4751, 28.6304], zoom = 6) 
     Map.addLayer(roi, {'color': 'FFFFFF00'}, 'Zambia Boundary Map') 
-    Map
+    Map.to_streamlit()
 
 
 

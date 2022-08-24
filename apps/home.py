@@ -25,5 +25,16 @@ def app():
         )
 
     st.header("Example")
+    with st.expander("See Source Code"):
+        st.code(
+            """        
+# Import libraries
+import ee
+import geemap.foliumap as geemap
+        """
+        )
+     # Import libraries
+    import ee
+    import geemap.foliumap as geemap
 
    

@@ -1,7 +1,7 @@
 import ee
 import streamlit as st
 import geemap.foliumap as geemap
-from dataset import *
+from dataset import GetIndices
 from args import get_main_args
 ee.Initialize()
 

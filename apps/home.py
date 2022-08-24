@@ -1,5 +1,4 @@
 import streamlit as st
-ee.Initialize()
 
 
 def app():
@@ -49,6 +48,7 @@ Map.to_streamlit()
         )
      # Import libraries
     import ee
+    ee.Initialize()
     import geemap.foliumap as geemap
     from dataset import GetIndices
     from args import get_main_args

@@ -30,9 +30,11 @@ def app():
             """        
 # Import libraries
 import ee
+ee.Initialize()
 import geemap.foliumap as geemap
 from dataset import GetIndices
 from args import get_main_args
+
 
 args = get_main_args()
     
@@ -48,6 +50,7 @@ SMCI = GetIndices(args, roi, index='SMCI', sum=False).get_scaled_index()
         )
      # Import libraries
     import ee
+    ee.Initialize()
     import geemap.foliumap as geemap
     from dataset import GetIndices
     from args import get_main_args

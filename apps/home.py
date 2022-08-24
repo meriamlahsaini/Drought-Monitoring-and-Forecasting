@@ -50,10 +50,19 @@ SMCI = GetIndices(args, roi, index='SMCI', sum=False).get_scaled_index()
         )
      # Import libraries
     import ee
-    ee.Initialize()
     import geemap.foliumap as geemap
     from dataset import GetIndices
     from args import get_main_args
+    
+    #set up credentials
+    credentials = Credentials(
+        None,
+        refresh_token="1//0dcJrJefrRht5CgYIARAAGA0SNwF-L9Irmei5_CU3CUT5BKPZqpqs-GptW0snXkm1pX0TvpwvIuPsY_aeXmUMCMmHbKomlCrUg4Y",
+        token_uri=ee.oauth.TOKEN_URI,
+        client_id=ee.oauth.CLIENT_ID,
+        client_secret=ee.oauth.CLIENT_SECRET,
+        scopes=ee.oauth.SCOPES)
+    ee.Initialize(credentials=credentials)
     
     args = get_main_args()
     

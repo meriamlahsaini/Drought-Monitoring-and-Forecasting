@@ -33,6 +33,17 @@ import ee
 import geemap.foliumap as geemap
 from dataset import GetIndices
 from args import get_main_args
+
+args = get_main_args()
+    
+roi = ee.FeatureCollection(args.roi_dir)
+
+TCI = GetIndices(args, roi, index='TCI', sum=False).get_scaled_index()
+VCI = GetIndices(args, roi, index='VCI', sum=False).get_scaled_index()
+ETCI = GetIndices(args, roi, index='ETCI', sum=True).get_scaled_index()
+PCI  = GetIndices(args, roi, index='PCI', sum=True).get_scaled_index()
+SMCI = GetIndices(args, roi, index='SMCI', sum=False).get_scaled_index()
+
         """
         )
      # Import libraries
@@ -40,5 +51,15 @@ from args import get_main_args
     import geemap.foliumap as geemap
     from dataset import GetIndices
     from args import get_main_args
+    
+    args = get_main_args()
+    
+    roi = ee.FeatureCollection(args.roi_dir)
+
+    TCI = GetIndices(args, roi, index='TCI', sum=False).get_scaled_index()
+    VCI = GetIndices(args, roi, index='VCI', sum=False).get_scaled_index()
+    ETCI = GetIndices(args, roi, index='ETCI', sum=True).get_scaled_index()
+    PCI  = GetIndices(args, roi, index='PCI', sum=True).get_scaled_index()
+    SMCI = GetIndices(args, roi, index='SMCI', sum=False).get_scaled_index()
 
    

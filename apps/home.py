@@ -40,17 +40,14 @@ args = get_main_args()
     
 roi = ee.FeatureCollection(args.roi_dir)
 
-TCI = GetIndices(args, roi, index='TCI', sum=False).get_scaled_index()
-VCI = GetIndices(args, roi, index='VCI', sum=False).get_scaled_index()
-ETCI = GetIndices(args, roi, index='ETCI', sum=True).get_scaled_index()
-PCI  = GetIndices(args, roi, index='PCI', sum=True).get_scaled_index()
-SMCI = GetIndices(args, roi, index='SMCI', sum=False).get_scaled_index()
+Map = geemap.Map(center=[-13.4751, 28.6304], zoom = 6) 
+Map.addLayer(roi, {'color': 'FFFFFF00'}, 'Zambia Boundary Map') 
+Map
 
         """
         )
      # Import libraries
     import ee
-    ee.Initialize()
     import geemap.foliumap as geemap
     from dataset import GetIndices
     from args import get_main_args
@@ -59,11 +56,10 @@ SMCI = GetIndices(args, roi, index='SMCI', sum=False).get_scaled_index()
     args = get_main_args()
     
     roi = ee.FeatureCollection(args.roi_dir)
+    Map = geemap.Map(center=[-13.4751, 28.6304], zoom = 6) 
+    Map.addLayer(roi, {'color': 'FFFFFF00'}, 'Zambia Boundary Map') 
+    Map
 
-    TCI = GetIndices(args, roi, index='TCI', sum=False).get_scaled_index()
-    VCI = GetIndices(args, roi, index='VCI', sum=False).get_scaled_index()
-    ETCI = GetIndices(args, roi, index='ETCI', sum=True).get_scaled_index()
-    PCI  = GetIndices(args, roi, index='PCI', sum=True).get_scaled_index()
-    SMCI = GetIndices(args, roi, index='SMCI', sum=False).get_scaled_index()
+
 
    

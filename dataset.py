@@ -1,5 +1,4 @@
 import ee
-from args import *
 
 class GetIndices():
   def __init__(self, args, roi, index, sum=False):

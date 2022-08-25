@@ -147,5 +147,5 @@ def app():
 
     # compute CMDI
 #     country = st.button("Compute CMDI", countries)
-    CMDI_image = compute_CMDI(VCI_image, TCI_image, PCI_image, ETCI_image, SMCI_image, weights, roi)
+#     CMDI_image = compute_CMDI(VCI_image, TCI_image, PCI_image, ETCI_image, SMCI_image, weights, roi)
     

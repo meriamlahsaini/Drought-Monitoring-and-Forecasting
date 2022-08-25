@@ -16,42 +16,48 @@ class GetIndices():
 
   def filter_data(self):
     if self.index == 'TCI':
-      MODIS_LST = self.args.terra_LST.merge(self.args.aqua_LST)\
-                                       .filterBounds(self.roi)\
-                                       .select('LST_Day_1km') 
+      terra_lst = ee.ImageCollection(self.args.terra_LST_dir)
+      aqua_lst = ee.ImageCollection(self.args.terra_LST_dir)
+      MODIS_LST = terra_lst.merge(aqua_lst)\
+                           .filterBounds(self.roi)\
+                           .select('LST_Day_1km') 
       return MODIS_LST.map(lambda img: img.multiply(0.02)\
                                           .subtract(273.15)\
                                           .float()\
                                           .set("system:time_start", img.get("system:time_start")))
 
 
-    elif self.index == 'VCI':  
-      MODIS_NDVI = self.args.terra_NDVI.merge(self.args.aqua_NDVI)\
-                                          .filterBounds(self.roi) \
-                                          .select('NDVI')  
+    elif self.index == 'VCI': 
+      terra_ndvi = ee.ImageCollection(self.args.terra_NDVI_dir)
+      aqua_ndvi = ee.ImageCollection(self.args.terra_NDVI_dir)
+      MODIS_NDVI = terra_ndvi.merge(aqua_ndvi)\
+                             .filterBounds(self.roi) \
+                             .select('NDVI')  
       return MODIS_NDVI.map(lambda img: img.divide(10000)\
                                             .float()\
                                             .set("system:time_start", img.get("system:time_start")))
                   
       
     elif self.index == 'ETCI':
-      MODIS_ET = self.args.modis_ET\
-                            .filterBounds(self.roi) \
-                            .select('ET')
+      modis_et = ee.ImageCollection(self.args.modis_ET_dir)
+      MODIS_ET = modis_et.filterBounds(self.roi) \
+                         .select('ET')
       return MODIS_ET.map(lambda img: img.multiply(0.1)\
-                                          .float()\
-                                          .set("system:time_start", img.get("system:time_start")))                      
+                                         .float()\
+                                         .set("system:time_start", img.get("system:time_start")))                      
 
 
     elif self.index == 'PCI':
+      precip = ee.ImageCollection(self.args.precip_dir)
       return self.args.precip \
-                        .filterBounds(self.roi)\
-                        .select('precipitationCal')            
+                      .filterBounds(self.roi)\
+                      .select('precipitationCal')            
     
     elif self.index == 'SMCI':
+      sm = ee.ImageCollection(self.args.sm_dir)
       return self.args.sm \
-                        .filterBounds(self.roi) \
-                        .select('SoilMoi10_40cm_inst') 
+                      .filterBounds(self.roi) \
+                      .select('SoilMoi10_40cm_inst') 
 
   
   def seasonal_filter (self): 

@@ -1,10 +1,4 @@
 import streamlit as st
-import ee
-import geemap.foliumap as geemap
-from dataset import GetIndices
-from args import get_main_args
-
-args = get_main_args()
 
 
 def app():
@@ -22,6 +16,12 @@ def app():
         "Zambia"
     )
 
+    
+    import ee
+    import geemap.foliumap as geemap
+    from dataset import GetIndices
+    from args import get_main_args
+    args = get_main_args()
     country = st.selectbox("Country", countries)
     if country == "Afghanistan":
         roi = ee.FeatureCollection(args.afghanistan_dir)

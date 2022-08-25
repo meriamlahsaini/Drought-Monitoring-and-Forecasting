@@ -16,7 +16,7 @@ def get_main_args():
     arg("--months", type=list, default=[1, 2, 3, 4], help="Study Period Range-months")
     arg("--season", type=str, default='growing', help="Study Period Season")
     arg("--visualize", type=bool, default=True, help="Option to Display Maps")
-    arg("--idx", type=int, default=0, help="Index of Image to Display")
+    arg("--idx", type=int, default=20, help="Index of Image to Display")
     arg("--vciVis", type=dict, default={'min':0.0, 'max': 1.0,
                                         'palette': ['FFFFFF', 'CE7E45', 'DF923D', 'F1B555', 'FCD163', 
                                         '99B718', '74A901','66A000', '529400', '3E8601', 

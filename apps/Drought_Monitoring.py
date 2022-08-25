@@ -141,9 +141,11 @@ def app():
     eigenVectors_np = np.array(eigenVectors.getInfo())[0]
     contrib_coeff = eigenVectors_np**2
     weights = [math.ceil(i*100)/100 for i in contrib_coeff]
-    display_weights = st.button('Weights '+weights)
+    display_weights = st.button('Weights')
     st.subheader(f"Contribution coefficient of:\n VCI {weights[0]} \n TCI {weights[1]} \n PCI {weights[2]} \n ETCI {weights[3]} \n SMCI {weights[4]}")
                     
 
     # compute CMDI
+#     country = st.button("Compute CMDI", countries)
     CMDI_image = compute_CMDI(VCI_image, TCI_image, PCI_image, ETCI_image, SMCI_image, weights, roi)
+    

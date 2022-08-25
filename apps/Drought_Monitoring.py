@@ -22,7 +22,9 @@ def app():
     from dataset import GetIndices
     from args import get_main_args
     args = get_main_args()
-    country = st.selectbox("**Country**", countries)
+    
+    country_header = st.text('**Country**')
+    country = st.selectbox(country_header, countries)
     if country == "Afghanistan":
         roi = ee.FeatureCollection(args.afghanistan_dir)
     elif country == "Burkina Faso":

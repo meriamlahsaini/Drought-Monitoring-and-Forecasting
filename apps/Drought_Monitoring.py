@@ -70,7 +70,9 @@ def app():
     listOfPCIImages = PCI.toList(PCI.size())
     listOfETCIImages = ETCI.toList(ETCI.size())
     listOfSMCIImages = SMCI.toList(SMCI.size())
-
+    
+    image_idx = st.slider("Image", 0, VCI.size().getInfo(), 0)                          # display month and year
+    args.idx = image_idx
     VCI_image = ee.Image(listOfVCIImages.get(args.idx))
     TCI_image = ee.Image(listOfTCIImages.get(args.idx))
     PCI_image = ee.Image(listOfPCIImages.get(args.idx))

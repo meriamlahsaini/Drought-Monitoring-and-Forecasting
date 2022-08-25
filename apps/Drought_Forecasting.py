@@ -5,8 +5,9 @@ def app():
     st.title("Drought Forecasting")
 
     countries = (
-        "Zambia",
-        "Ethiopia"
+        "Ethiopia",
+        "Kenya",
+        "Zambia"
     )
 
     country = st.selectbox("Country", countries)

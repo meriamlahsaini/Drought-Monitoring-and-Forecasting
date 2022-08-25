@@ -90,7 +90,7 @@ def app():
     )
     
     input_index = st.selectbox("Input Indices", input_indcies)
-    display_input_index = st.button('Display'+input_index)
+    display_input_index = st.button('Display '+input_index)
     if display_boundary_map:
         Map = geemap.Map(zoom = 6, plugin_Draw=True, Draw_export=False)
         Map.centerObject(roi, 6)

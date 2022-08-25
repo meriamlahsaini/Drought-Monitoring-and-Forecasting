@@ -15,14 +15,6 @@ def app():
     """
     )
 
-    with st.expander("Where to find your Earth Engine token?"):
-        st.markdown(
-            """
-            - **Windows:** `C:/Users/USERNAME/.config/earthengine/credentials`
-            - **Linux:** `/home/USERNAME/.config/earthengine/credentials`
-            - **macOS:** `/Users/USERNAME/.config/earthengine/credentials`
-            """
-        )
 
     st.header("Example")
     with st.expander("See Source Code"):
@@ -36,12 +28,8 @@ from args import get_main_args
 
 
 args = get_main_args()
-    
-roi = ee.FeatureCollection(args.roi_dir)
-
-Map = geemap.Map(center=[-13.4751, 28.6304], zoom = 6, plugin_Draw=True, Draw_export=False) 
-Map.addLayer(roi, {'color': 'FFFFFF00'}, 'Zambia Boundary Map') 
-Map.to_streamlit()
+print(args.scale)
+print(args.idx)
 
         """
         )
@@ -54,10 +42,8 @@ Map.to_streamlit()
     
     args = get_main_args()
     
-    roi = ee.FeatureCollection(args.roi_dir)
-    Map = geemap.Map(center=[-13.4751, 28.6304], zoom = 6, plugin_Draw=True, Draw_export=False) 
-    Map.addLayer(roi, {'color': 'FFFFFF00'}, 'Zambia Boundary Map') 
-    Map.to_streamlit()
+    print(args.scale)
+    print(args.idx)
 
 
 

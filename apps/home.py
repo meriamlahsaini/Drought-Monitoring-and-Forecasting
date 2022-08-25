@@ -28,8 +28,9 @@ from args import get_main_args
 
 
 args = get_main_args()
-print(args.scale)
-print(args.idx)
+Map = geemap.Map(center=[-13.4751, 28.6304], zoom = 6, plugin_Draw=True, Draw_export=False)
+Map.addLayer(roi, {}, 'Boundary Map') 
+Map.to_streamlit()
 
         """
         )
@@ -42,9 +43,9 @@ print(args.idx)
     
     args = get_main_args()
     
-    print(args.scale)
-    print(args.idx)
-
+    Map = geemap.Map(center=[-13.4751, 28.6304], zoom = 6, plugin_Draw=True, Draw_export=False)
+    Map.addLayer(roi, {}, 'Boundary Map') 
+    Map.to_streamlit()
 
 
    

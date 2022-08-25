@@ -49,15 +49,13 @@ class GetIndices():
 
     elif self.index == 'PCI':
       precip = ee.ImageCollection(self.args.precip_dir)
-      return self.args.precip \
-                      .filterBounds(self.roi)\
-                      .select('precipitationCal')            
+      return precip.filterBounds(self.roi)\
+                   .select('precipitationCal')            
     
     elif self.index == 'SMCI':
       sm = ee.ImageCollection(self.args.sm_dir)
-      return self.args.sm \
-                      .filterBounds(self.roi) \
-                      .select('SoilMoi10_40cm_inst') 
+      return sm.filterBounds(self.roi) \
+               .select('SoilMoi10_40cm_inst') 
 
   
   def seasonal_filter (self): 

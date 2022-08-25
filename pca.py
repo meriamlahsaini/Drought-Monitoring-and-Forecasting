@@ -1,5 +1,4 @@
 import ee
-import numpy as np
 
 # This helper function returns a list of new band names.
 def getNewBandNames(prefix, bandNames):

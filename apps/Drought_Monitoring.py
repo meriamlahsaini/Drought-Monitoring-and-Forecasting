@@ -95,7 +95,7 @@ def app():
         Map = geemap.Map(zoom = 6, plugin_Draw=True, Draw_export=False)
         Map.centerObject(roi, 6)
         
-        elif input_index == 'VCI':
+        if input_index == 'VCI':
             Map.addLayer(VCI_image.clip(roi), args.vciVis, 'VCI, Jan 2012') 
             Map.add_colorbar(args.vciVis, label="VCI", orientation="vertical", layer_name="VCI, Jan 2012")
             Map.to_streamlit()

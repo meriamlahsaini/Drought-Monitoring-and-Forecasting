@@ -1,5 +1,4 @@
 import ee
-ee.Initialize()
 from argparse import ArgumentDefaultsHelpFormatter, ArgumentParser
 
 

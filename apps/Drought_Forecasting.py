@@ -5,8 +5,12 @@ def app():
     st.title("Drought Forecasting")
 
     countries = (
+        "Afghanistan",
+        "Burkina Faso",
         "Ethiopia",
+        "Ghana",
         "Kenya",
+        "Senegal",
         "Zambia"
     )
 

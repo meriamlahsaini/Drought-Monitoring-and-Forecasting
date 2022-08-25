@@ -1,6 +1,6 @@
 import streamlit as st
 from multiapp import MultiApp
-from apps import home, Drought_Monitoring
+from apps import home, Drought_Monitoring, Drought_Forecasting
 from dataset import *
 from args import get_main_args
 
@@ -13,7 +13,7 @@ apps = MultiApp()
 
 apps.add_app("Home", home.app)
 apps.add_app("Drought Monitoring", Drought_Monitoring.app)
-# apps.add_app("Change basemaps", basemaps.app)
+apps.add_app("Drought Forecasting", Drought_Forecasting.app)
 # apps.add_app("Change opacity", opacity.app)
 # apps.add_app("Search datasets", datasets.app)
 # apps.add_app("NLCD Demo", nlcd_demo.app)

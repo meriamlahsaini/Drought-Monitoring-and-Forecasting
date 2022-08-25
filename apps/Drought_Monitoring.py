@@ -17,8 +17,9 @@ def app():
     )
 
     # import the necessary libraries
-    import gc
     import ee
+    import gc
+    import numpy as np
     import geemap.foliumap as geemap
     from dataset import GetIndices
     from pca import getPrincipalComponents

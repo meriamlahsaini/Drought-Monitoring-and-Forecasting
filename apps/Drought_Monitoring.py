@@ -49,14 +49,16 @@ def app():
         
     ## INPUT INDICES: VCI, TCI, PCI, ETCI, SMCI
     st.subheader('Compute Input Indices')
+    
+    seasons = (
+        "Sowing",
+        "Growing",
+    )
         
-    study_years = st.slider("Study Years", 2012, 2022, 2012)
-#     study_months_gs = st.slider("Study Months", 1, 4, 1)      # growing season
-#     study_months_ss = st.slider("Study Months", 11, 12, 11)   # sowing season
+    season = st.selectbox("Season", seasons)
     
-    st.subheader(study_years)
-    
-    
+    args.season = season
+    st.subheader(args.season)
     TCI = GetIndices(args, roi, index='TCI', sum=False).get_scaled_index()
     VCI = GetIndices(args, roi, index='VCI', sum=False).get_scaled_index()
     ETCI = GetIndices(args, roi, index='ETCI', sum=True).get_scaled_index()

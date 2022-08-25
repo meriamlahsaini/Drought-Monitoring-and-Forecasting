@@ -142,7 +142,7 @@ def app():
     contrib_coeff = eigenVectors_np**2
     weights = [math.ceil(i*100)/100 for i in contrib_coeff]
     display_weights = st.button('Weights')
-    st.subheader(f"Contribution coefficient of:\n VCI {weights[0]} \n TCI {weights[1]} \n PCI {weights[2]} \n ETCI {weights[3]} \n SMCI {weights[4]}")
+#     st.subheader(f"Contribution coefficient of:\n VCI {weights[0]} \n TCI {weights[1]} \n PCI {weights[2]} \n ETCI {weights[3]} \n SMCI {weights[4]}")
                     
 
     # compute CMDI

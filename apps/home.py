@@ -30,6 +30,7 @@ def app():
             """        
 # Import libraries
 import ee
+ee.Authenticate()
 ee.Initialize()
 import geemap.foliumap as geemap
 from dataset import GetIndices
@@ -48,6 +49,7 @@ Map.to_streamlit()
         )
      # Import libraries
     import ee
+    ee.Authenticate()
     ee.Initialize()
     import geemap.foliumap as geemap
     from dataset import GetIndices

@@ -2,7 +2,7 @@ import streamlit as st
 
 
 def app():
-    st.title("Drought Forecasting")
+    st.title("Drought Monitoring")
 
     countries = (
         "Zambia",

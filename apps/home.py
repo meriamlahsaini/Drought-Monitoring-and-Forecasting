@@ -30,6 +30,12 @@ from args import get_main_args
 args = get_main_args()
 roi = ee.FeatureCollection(args.roi_dir)
 
+TCI = GetIndices(args, roi, index='TCI', sum=False).get_scaled_index()
+VCI = GetIndices(args, roi, index='VCI', sum=False).get_scaled_index()
+ETCI = GetIndices(args, roi, index='ETCI', sum=True).get_scaled_index()
+PCI  = GetIndices(args, roi, index='PCI', sum=True).get_scaled_index()
+SMCI = GetIndices(args, roi, index='SMCI', sum=False).get_scaled_index()
+
 Map = geemap.Map(center=[-13.4751, 28.6304], zoom = 6, plugin_Draw=True, Draw_export=False)
 Map.addLayer(roi, {}, 'Boundary Map') 
 Map.to_streamlit()
@@ -45,6 +51,12 @@ Map.to_streamlit()
     
     args = get_main_args()
     roi = ee.FeatureCollection(args.roi_dir)
+    
+    TCI = GetIndices(args, roi, index='TCI', sum=False).get_scaled_index()
+    VCI = GetIndices(args, roi, index='VCI', sum=False).get_scaled_index()
+    ETCI = GetIndices(args, roi, index='ETCI', sum=True).get_scaled_index()
+    PCI  = GetIndices(args, roi, index='PCI', sum=True).get_scaled_index()
+    SMCI = GetIndices(args, roi, index='SMCI', sum=False).get_scaled_index()
     
     Map = geemap.Map(center=[-13.4751, 28.6304], zoom = 6, plugin_Draw=True, Draw_export=False)
     Map.addLayer(roi, {}, 'Boundary Map') 

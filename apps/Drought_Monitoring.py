@@ -42,7 +42,8 @@ def app():
         
     display_boundary_map = st.button('Display Boundary Map')
     if display_boundary_map:
-        Map = geemap.Map(zoom = 6, plugin_Draw=True, Draw_export=False)
+        Map = geemap.Map(plugin_Draw=True, Draw_export=False)
+        Map.centerObject(roi, 6)
         Map.addLayer(roi, {}, country +'Boundary Map') 
         Map.to_streamlit()
 
@@ -79,15 +80,42 @@ def app():
     ETCI_image = ee.Image(listOfETCIImages.get(args.idx))
     SMCI_image = ee.Image(listOfSMCIImages.get(args.idx))
     
-#     if args.visualize:
-#         Map = geemap.Map(center=[-13.4751, 28.6304], zoom = 6, plugin_Draw=True, Draw_export=False)
-#         Map.addLayer(VCI_image.clip(roi), args.vciVis, 'VCI, Jan 2012')
-#         Map.addLayer(TCI_image.clip(roi), args.tciVis, 'TCI, Jan 2012')
-#         Map.addLayer(PCI_image.clip(roi), args.pciVis, 'PCI, Jan 2012')
-#         Map.addLayer(ETCI_image.clip(roi), args.etciVis, 'ETCI, Jan 2012')
-#         Map.addLayer(SMCI_image.clip(roi), args.smciVis, 'SMCI, Jan 2012')
-#         Map.add_colorbar(args.vciVis, label="VCI", orientation="vertical", layer_name="PCI, Jan 2012")
-#         Map.to_streamlit()
+    
+    input_indcies = (
+        "VCI",
+        "TCI",
+        "PCI",
+        "ETCI",
+        "SMCI"
+    )
+    
+    input_index = st.selectbox("Input Indices", input_indcies)
+    display_input_index = st.button('Display'+input_index)
+    if display_boundary_map:
+        Map = geemap.Map(zoom = 6, plugin_Draw=True, Draw_export=False)
+        Map.centerObject(roi, 6)
+        
+        elif input_index == 'VCI':
+            Map.addLayer(VCI_image.clip(roi), args.vciVis, 'VCI, Jan 2012') 
+            Map.add_colorbar(args.vciVis, label="VCI", orientation="vertical", layer_name="VCI, Jan 2012")
+            Map.to_streamlit()
+    
+        elif input_index == 'TCI':
+            Map.addLayer(TCI_image.clip(roi), args.tciVis, 'TCI, Jan 2012') 
+            Map.add_colorbar(args.tciVis, label="TCI", orientation="vertical", layer_name="TCI, Jan 2012")
+            Map.to_streamlit()
 
-#     else:
-#         print('Processing ended')
+        elif input_index == 'PCI':
+            Map.addLayer(PCI_image.clip(roi), args.pciVis, 'PCI, Jan 2012') 
+            Map.add_colorbar(args.vciVis, label="PCI", orientation="vertical", layer_name="PCI, Jan 2012")
+            Map.to_streamlit()
+    
+        elif input_index == 'ETCI':
+            Map.addLayer(ETCI_image.clip(roi), args.etciVis, 'ETCI, Jan 2012') 
+            Map.add_colorbar(args.etciVis, label="ETCI", orientation="vertical", layer_name="ETCI, Jan 2012")
+            Map.to_streamlit()
+            
+        elif input_index == 'SMCI':
+            Map.addLayer(SMCI_image.clip(roi), args.smciVis, 'SMCI, Jan 2012') 
+            Map.add_colorbar(args.smciVis, label="SMCI", orientation="vertical", layer_name="SMCI, Jan 2012")
+            Map.to_streamlit()

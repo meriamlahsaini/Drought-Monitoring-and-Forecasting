@@ -119,3 +119,7 @@ def app():
             Map.addLayer(SMCI_image.clip(roi), args.smciVis, 'SMCI, Jan 2012') 
             Map.add_colorbar(args.smciVis, label="SMCI", orientation="vertical", layer_name="SMCI, Jan 2012")
             Map.to_streamlit()
+
+            
+    ## PCA
+    st.subheader('Compute CMDI')

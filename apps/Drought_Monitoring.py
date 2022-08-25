@@ -22,8 +22,8 @@ def app():
     import gc
     import numpy as np
     from dataset import GetIndices
-    from pca import getPrincipalComponents
-    from CMDI import compute_CMDI
+#     from pca import getPrincipalComponents
+#     from CMDI import compute_CMDI
     
     from args import get_main_args
     args = get_main_args()

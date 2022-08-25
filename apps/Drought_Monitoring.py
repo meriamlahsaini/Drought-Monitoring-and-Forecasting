@@ -21,7 +21,7 @@ def app():
     import geemap.foliumap as geemap
     import gc
     from dataset import GetIndices
-    from PCA import getPrincipalComponents
+    from pca import getPrincipalComponents
     from CMDI import compute_CMDI
     
     from args import get_main_args

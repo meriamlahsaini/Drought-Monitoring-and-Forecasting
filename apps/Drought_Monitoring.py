@@ -4,6 +4,8 @@ import streamlit as st
 def app():
     st.title("Drought Monitoring")
 
+    
+    ## ROI
     countries = (
         "Afghanistan",
         "Burkina Faso",
@@ -15,12 +17,33 @@ def app():
     )
 
     country = st.selectbox("Country", countries)
-    
+    if country == "Afghanistan":
+        roi = ee.FeatureCollection(args.afghanistan_dir)
+    elif country == "Burkina Faso":
+        roi = ee.FeatureCollection(args.burkina_faso_dir)
+    elif country == "Ethiopia":
+        roi = ee.FeatureCollection(args.ethiopia_dir)
+    elif country == "Ghana":
+        roi = ee.FeatureCollection(args.ghana_dir) 
+    elif country == "Kenya":
+        roi = ee.FeatureCollection(args.kenya_dir) 
+    elif country == "Senegal":
+        roi = ee.FeatureCollection(args.senegal_dir)      
+    elif country == "Zambia":
+        roi = ee.FeatureCollection(args.zambia_dir)
+        
+    display_boundary_map = st.button('Display Boundary Map')
+    if display_boundary_map:
+        Map = geemap.Map(zoom = 6, plugin_Draw=True, Draw_export=False)
+        Map.addLayer(roi, {}, country +'Boundary Map') 
+        Map.to_streamlit()
+
+        
+        
+        
     study_years = st.slider("Study Years", 2012, 2022, 2012)
     study_months_gs = st.slider("Study Months", 1, 4, 1)   # growing season
     study_months_ss = st.slider("Study Months", 11, 12, 11)   # sowing season
-   
-
 
     st.header("Example")
     with st.expander("See Source Code"):
@@ -111,7 +134,3 @@ if args.visualize:
 
     else:
         print('Processing ended')
-    
-#     Map = geemap.Map(center=[-13.4751, 28.6304], zoom = 6, plugin_Draw=True, Draw_export=False)
-#     Map.addLayer(roi, {}, 'Boundary Map') 
-#     Map.to_streamlit()

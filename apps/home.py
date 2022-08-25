@@ -49,9 +49,19 @@ PCI_image = ee.Image(listOfPCIImages.get(args.idx))
 ETCI_image = ee.Image(listOfETCIImages.get(args.idx))
 SMCI_image = ee.Image(listOfSMCIImages.get(args.idx))
 
-Map = geemap.Map(center=[-13.4751, 28.6304], zoom = 6, plugin_Draw=True, Draw_export=False)
-Map.addLayer(roi, {}, 'Boundary Map') 
-Map.to_streamlit()
+
+if args.visualize:
+    Map = geemap.Map(center=[-13.4751, 28.6304], zoom = 6, plugin_Draw=True, Draw_export=False)
+    Map.addLayer(VCI_image.clip(roi), args.vciVis, 'VCI, Jan 2012')
+    Map.addLayer(TCI_image.clip(roi), args.tciVis, 'TCI, Jan 2012')
+    Map.addLayer(PCI_image.clip(roi), args.pciVis, 'PCI, Jan 2012')
+    Map.addLayer(ETCI_image.clip(roi), args.etciVis, 'ETCI, Jan 2012')
+    Map.addLayer(SMCI_image.clip(roi), args.smciVis, 'SMCI, Jan 2012')
+    Map.add_colorbar(args.vciVis, label="VCI", orientation="vertical", layer_name="PCI, Jan 2012")
+    Map.to_streamlit()
+      
+    else:
+        print('Processing ended')
 
         """
         )
@@ -83,10 +93,22 @@ Map.to_streamlit()
     PCI_image = ee.Image(listOfPCIImages.get(args.idx))
     ETCI_image = ee.Image(listOfETCIImages.get(args.idx))
     SMCI_image = ee.Image(listOfSMCIImages.get(args.idx))
+    if args.visualize:
+        Map = geemap.Map(center=[-13.4751, 28.6304], zoom = 6, plugin_Draw=True, Draw_export=False)
+        Map.addLayer(VCI_image.clip(roi), args.vciVis, 'VCI, Jan 2012')
+        Map.addLayer(TCI_image.clip(roi), args.tciVis, 'TCI, Jan 2012')
+        Map.addLayer(PCI_image.clip(roi), args.pciVis, 'PCI, Jan 2012')
+        Map.addLayer(ETCI_image.clip(roi), args.etciVis, 'ETCI, Jan 2012')
+        Map.addLayer(SMCI_image.clip(roi), args.smciVis, 'SMCI, Jan 2012')
+        Map.add_colorbar(args.vciVis, label="VCI", orientation="vertical", layer_name="PCI, Jan 2012")
+        Map.to_streamlit()
+
+    else:
+        print('Processing ended')
     
-    Map = geemap.Map(center=[-13.4751, 28.6304], zoom = 6, plugin_Draw=True, Draw_export=False)
-    Map.addLayer(roi, {}, 'Boundary Map') 
-    Map.to_streamlit()
+#     Map = geemap.Map(center=[-13.4751, 28.6304], zoom = 6, plugin_Draw=True, Draw_export=False)
+#     Map.addLayer(roi, {}, 'Boundary Map') 
+#     Map.to_streamlit()
 
 
    

@@ -4,9 +4,14 @@ from argparse import ArgumentDefaultsHelpFormatter, ArgumentParser
 def get_main_args():
     parser = ArgumentParser(formatter_class=ArgumentDefaultsHelpFormatter)
     arg = parser.add_argument
-    arg("--zambia_dir", type=str, default="users/Plottings/Zambia", help="Zambia Boundary Map Directory")
+    
+    arg("--afghanistan_dir", type=str, default="users/Plottings/Afghanistan", help="Afghanistan Boundary Map Directory")
+    arg("--burkina_faso_dir", type=str, default="users/Plottings/Burkina_Faso", help="Burkina Faso Boundary Map Directory")
     arg("--ethiopia_dir", type=str, default="users/Plottings/Ethiopia", help="Ethiopia Boundary Map Directory")
+    arg("--ghana_dir", type=str, default="users/Plottings/Ghana", help="Ghana Boundary Map Directory")
     arg("--kenya_dir", type=str, default="users/Plottings/Kenya", help="Kenya Boundary Map Directory")
+    arg("--senegal_dir", type=str, default="users/Plottings/Senegal", help="Senegal Boundary Map Directory")
+    arg("--zambia_dir", type=str, default="users/Plottings/Zambia", help="Zambia Boundary Map Directory")    
     arg("--terra_LST_dir", type=str, default="MODIS/061/MOD11A1", help="Terra LST Image Collection")
     arg("--aqua_LST_dir", type=str, default="MODIS/061/MYD11A1", help="Aqua LST Image Collection")
     arg("--terra_NDVI_dir", type=str, default="MODIS/061/MOD13Q1", help="Terra NDVI Image Collection")

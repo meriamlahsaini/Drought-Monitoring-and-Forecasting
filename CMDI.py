@@ -1,4 +1,4 @@
-import ee
+
 
 def compute_CMDI(VCI, TCI, PCI, ETCI, SMCI, weights, roi):
     wVCI = VCI.clip(roi).multiply(weights[0])

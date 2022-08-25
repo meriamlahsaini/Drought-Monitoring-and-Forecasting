@@ -30,7 +30,7 @@ from args import get_main_args
 
 
 args = get_main_args()
-roi = ee.FeatureCollection(args.roi_dir)
+roi = ee.FeatureCollection(args.zambia_dir)
 
 TCI = GetIndices(args, roi, index='TCI', sum=False).get_scaled_index()
 VCI = GetIndices(args, roi, index='VCI', sum=False).get_scaled_index()
@@ -75,7 +75,7 @@ if args.visualize:
 
     
     args = get_main_args()
-    roi = ee.FeatureCollection(args.roi_dir)
+    roi = ee.FeatureCollection(args.zambia_dir)
     
     TCI = GetIndices(args, roi, index='TCI', sum=False).get_scaled_index()
     VCI = GetIndices(args, roi, index='VCI', sum=False).get_scaled_index()

@@ -47,13 +47,15 @@ def app():
         Map.to_streamlit()
 
         
-        
+    ## INPUT INDICES: VCI, TCI, PCI, ETCI, SMCI
     st.subheader('Compute Input Indices')
         
     study_years = st.slider("Study Years", 2012, 2022, 2012)
-    study_months_gs = st.slider("Study Months", 1, 4, 1)   # growing season
-    study_months_ss = st.slider("Study Months", 11, 12, 11)   # sowing season
-
+#     study_months_gs = st.slider("Study Months", 1, 4, 1)      # growing season
+#     study_months_ss = st.slider("Study Months", 11, 12, 11)   # sowing season
+    
+    st.subheader(study_years)
+    
     
     TCI = GetIndices(args, roi, index='TCI', sum=False).get_scaled_index()
     VCI = GetIndices(args, roi, index='VCI', sum=False).get_scaled_index()

@@ -18,7 +18,6 @@ def app():
 
     # import the necessary libraries
     import gc
-    import numpy as np
     import ee
     import geemap.foliumap as geemap
     from dataset import GetIndices

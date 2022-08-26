@@ -16,7 +16,8 @@ def app():
     )
     
     # import the necessary libraries
-    import ee, geemap
+    import ee
+    geemap.ee_initialize()
     import geemap.foliumap as geemap
  
     from args import get_main_args

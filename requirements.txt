@@ -1,7 +1,12 @@
+geemap
 geopandas
 keplergl
+leafmap
 streamlit
 streamlit-folium
 streamlit-keplergl
-git+https://github.com/giswqs/leafmap
-git+https://github.com/giswqs/geemap
+
+
+
+#git+https://github.com/giswqs/leafmap
+#git+https://github.com/giswqs/geemap

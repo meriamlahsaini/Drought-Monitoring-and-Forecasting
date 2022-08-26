@@ -26,8 +26,8 @@ def app():
     
     st.subheader('Define ROI')
     country = st.selectbox("Country", countries)
-#     if country == "Afghanistan":
-#         roi = ee.FeatureCollection(args.afghanistan_dir)
+    if country == "Afghanistan":
+        roi = ee.FeatureCollection(args.afghanistan_dir)
 #     elif country == "Burkina Faso":
 #         roi = ee.FeatureCollection(args.burkina_faso_dir)
 #     elif country == "Ethiopia":

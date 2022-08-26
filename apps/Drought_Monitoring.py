@@ -29,7 +29,8 @@ def app():
     #     import geemap.foliumap as geemap: don't use it, it messes up with the API initialization
     
     
-    st.subheader('Define ROI')
+#     st.subheader('Define ROI')
+    st.write("""####Define ROI""")
     country = st.selectbox("Country", countries)
     if country == "Afghanistan":
         roi = ee.FeatureCollection(args.afghanistan_dir)
@@ -93,17 +94,44 @@ def app():
     ETCI_image = ee.Image(listOfETCIImages.get(args.idx))
     SMCI_image = ee.Image(listOfSMCIImages.get(args.idx))
    
+
+            
+    ## PCA
+    st.subheader('Compute CMDI')
     
-    input_indcies = (
+    gc.collect()
+    
+    image = ee.Image.cat([VCI_image.clip(roi), 
+                          TCI_image.clip(roi),
+                          PCI_image.clip(roi),
+                          ETCI_image.clip(roi),
+                          SMCI_image.clip(roi)]) 
+    
+    # Get the PCs at the specified scale and in the specified region
+    pcImage, eigenVectors = getPrincipalComponents(image, args.scale, roi, args.bandNames)    
+    eigenVectors_np = np.array(eigenVectors.getInfo())[0]
+    contrib_coeff = eigenVectors_np**2
+    weights = [math.ceil(i*100)/100 for i in contrib_coeff]
+    display_weights = st.button('Weights')
+    if display_weights:
+        st.subheader(f"Contribution coefficient of:\n VCI: {weights[0]} \n TCI: {weights[1]} \n PCI: {weights[2]} \n ETCI: {weights[3]} \n SMCI: {weights[4]}")
+                    
+
+    # compute CMDI
+    CMDI_image = compute_CMDI(VCI_image, TCI_image, PCI_image, ETCI_image, SMCI_image, weights, roi)
+    
+     input_indcies = (
         "VCI",
         "TCI",
         "PCI",
         "ETCI",
-        "SMCI"
+        "SMCI",
+        "CMDI"
     )
     
     input_index = st.selectbox("Input Indices", input_indcies)
     display_input_index = st.button('Display '+input_index)
+    
     if display_boundary_map:
         Map = geemap.Map(zoom = 6, plugin_Draw=True, Draw_export=False)
         Map.centerObject(roi, 6)
@@ -132,36 +160,8 @@ def app():
             Map.addLayer(SMCI_image.clip(roi), args.smciVis, 'SMCI, Jan 2012') 
             Map.add_colorbar(args.smciVis, label="SMCI", orientation="vertical", layer_name="SMCI, Jan 2012")
             Map.to_streamlit()
-
-            
-    ## PCA
-    st.subheader('Compute CMDI')
-    
-    gc.collect()
-    
-    image = ee.Image.cat([VCI_image.clip(roi), 
-                          TCI_image.clip(roi),
-                          PCI_image.clip(roi),
-                          ETCI_image.clip(roi),
-                          SMCI_image.clip(roi)]) 
-    
-    # Get the PCs at the specified scale and in the specified region
-    pcImage, eigenVectors = getPrincipalComponents(image, args.scale, roi, args.bandNames)    
-    eigenVectors_np = np.array(eigenVectors.getInfo())[0]
-    contrib_coeff = eigenVectors_np**2
-    weights = [math.ceil(i*100)/100 for i in contrib_coeff]
-    display_weights = st.button('Weights')
-    if display_weights:
-        st.subheader(f"Contribution coefficient of:\n VCI: {weights[0]} \n TCI: {weights[1]} \n PCI: {weights[2]} \n ETCI: {weights[3]} \n SMCI: {weights[4]}")
-                    
-
-    # compute CMDI
-    CMDI_image = compute_CMDI(VCI_image, TCI_image, PCI_image, ETCI_image, SMCI_image, weights, roi)
-    cmdi = st.button("Display CMDI")
-    if cmdi:
-        Map = geemap.Map(zoom = 6, plugin_Draw=True, Draw_export=False)
-        Map.centerObject(roi, 6)
-        Map.addLayer(CMDI_image.clip(roi), args.cdmiVis, 'CMDI, Jan 2012') 
-        Map.add_colorbar(args.cdmiVis, label="CMDI", orientation="vertical", layer_name="CMDI, Jan 2012")
-        Map.to_streamlit()
-    
+        
+        elif input_index == 'CMDI':
+            Map.addLayer(CMDI_image.clip(roi), args.cdmiVis, 'CMDI, Jan 2012') 
+            Map.add_colorbar(args.cdmiVis, label="CMDI", orientation="vertical", layer_name="CMDI, Jan 2012")
+            Map.to_streamlit()

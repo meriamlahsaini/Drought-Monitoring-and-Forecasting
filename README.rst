@@ -20,7 +20,7 @@ Drought is a climate-related disaster that negatively impacts a variety of secto
 * Compare the spatial-temporal distribution of CDMI with multi-time scale SPI (3-month to 12-month) and Gross Primary production (GPP).
 
 
-.. figure:: https://github.com/surajitghoshiwmi/Rim/blob/main/images/Drought%20Monitoring%20and%20Forecasting%20Workflow.jpg
+.. figure:: https://github.com/Rim-chan/DM/blob/main/images/Drought%20Monitoring%20and%20Forecasting%20Workflow.jpg
     :align: center
 
 

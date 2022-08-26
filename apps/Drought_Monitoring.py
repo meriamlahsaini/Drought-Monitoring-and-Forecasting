@@ -92,8 +92,7 @@ def app():
     PCI_image = ee.Image(listOfPCIImages.get(args.idx))
     ETCI_image = ee.Image(listOfETCIImages.get(args.idx))
     SMCI_image = ee.Image(listOfSMCIImages.get(args.idx))
-    st.subheader(args.idx)
-    
+   
     
     input_indcies = (
         "VCI",
@@ -159,4 +158,7 @@ def app():
     # compute CMDI
     country = st.button("Compute CMDI", countries)
     CMDI_image = compute_CMDI(VCI_image, TCI_image, PCI_image, ETCI_image, SMCI_image, weights, roi)
+    Map.addLayer(CMDI_image.clip(roi), args.cdmiVis, 'CMDI, Jan 2012') 
+    Map.add_colorbar(args.cdmiVis, label="CMDI", orientation="vertical", layer_name="CMDI, Jan 2012")
+    Map.to_streamlit()
     

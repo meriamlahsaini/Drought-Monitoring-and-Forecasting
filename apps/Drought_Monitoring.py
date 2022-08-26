@@ -1,6 +1,7 @@
 import streamlit as st
 import ee, geemap
 geemap.ee_initialize()
+#     import geemap.foliumap as geemap: don't use it, it messes up with the API initialization
 import gc
 import math
 import numpy as np
@@ -26,11 +27,8 @@ def app():
     
     # import the necessary libraries
     args = get_main_args()
-    #     import geemap.foliumap as geemap: don't use it, it messes up with the API initialization
     
-    
-#     st.subheader('Define ROI')
-     st.subheader(Define ROI)
+    st.subheader(Define ROI)
     country = st.selectbox("Country", countries)
     if country == "Afghanistan":
         roi = ee.FeatureCollection(args.afghanistan_dir)

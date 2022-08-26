@@ -30,7 +30,7 @@ def app():
     
     
 #     st.subheader('Define ROI')
-    st.write("""####Define ROI""")
+     st.subheader(Define ROI)
     country = st.selectbox("Country", countries)
     if country == "Afghanistan":
         roi = ee.FeatureCollection(args.afghanistan_dir)
@@ -137,31 +137,31 @@ def app():
         Map.centerObject(roi, 6)
         
         if input_index == 'VCI':
-            Map.addLayer(VCI_image.clip(roi), args.vciVis, 'VCI, Jan 2012') 
-            Map.add_colorbar(args.vciVis, label="VCI", orientation="vertical", layer_name="VCI, Jan 2012")
+            Map.addLayer(VCI_image.clip(roi), args.vciVis, 'VCI, '+date) 
+            Map.add_colorbar(args.vciVis, label="VCI", orientation="vertical", layer_name="VCI, "+date)
             Map.to_streamlit()
     
         elif input_index == 'TCI':
-            Map.addLayer(TCI_image.clip(roi), args.tciVis, 'TCI, Jan 2012') 
-            Map.add_colorbar(args.tciVis, label="TCI", orientation="vertical", layer_name="TCI, Jan 2012")
+            Map.addLayer(TCI_image.clip(roi), args.tciVis, 'TCI, '+date) 
+            Map.add_colorbar(args.tciVis, label="TCI", orientation="vertical", layer_name="TCI, "+date)
             Map.to_streamlit()
 
         elif input_index == 'PCI':
-            Map.addLayer(PCI_image.clip(roi), args.pciVis, 'PCI, Jan 2012') 
-            Map.add_colorbar(args.vciVis, label="PCI", orientation="vertical", layer_name="PCI, Jan 2012")
+            Map.addLayer(PCI_image.clip(roi), args.pciVis, 'PCI, '+date) 
+            Map.add_colorbar(args.vciVis, label="PCI", orientation="vertical", layer_name="PCI, "+date)
             Map.to_streamlit()
     
         elif input_index == 'ETCI':
-            Map.addLayer(ETCI_image.clip(roi), args.etciVis, 'ETCI, Jan 2012') 
-            Map.add_colorbar(args.etciVis, label="ETCI", orientation="vertical", layer_name="ETCI, Jan 2012")
+            Map.addLayer(ETCI_image.clip(roi), args.etciVis, 'ETCI,'+date) 
+            Map.add_colorbar(args.etciVis, label="ETCI", orientation="vertical", layer_name="ETCI, "+date)
             Map.to_streamlit()
             
         elif input_index == 'SMCI':
-            Map.addLayer(SMCI_image.clip(roi), args.smciVis, 'SMCI, Jan 2012') 
-            Map.add_colorbar(args.smciVis, label="SMCI", orientation="vertical", layer_name="SMCI, Jan 2012")
+            Map.addLayer(SMCI_image.clip(roi), args.smciVis, 'SMCI, '+date) 
+            Map.add_colorbar(args.smciVis, label="SMCI", orientation="vertical", layer_name="SMCI, "+date)
             Map.to_streamlit()
         
         elif input_index == 'CMDI':
-            Map.addLayer(CMDI_image.clip(roi), args.cdmiVis, 'CMDI, Jan 2012') 
-            Map.add_colorbar(args.cdmiVis, label="CMDI", orientation="vertical", layer_name="CMDI, Jan 2012")
+            Map.addLayer(CMDI_image.clip(roi), args.cdmiVis, 'CMDI,'+date) 
+            Map.add_colorbar(args.cdmiVis, label="CMDI", orientation="vertical", layer_name="CMDI, "+date)
             Map.to_streamlit()

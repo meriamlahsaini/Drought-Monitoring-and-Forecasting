@@ -1,8 +1,6 @@
 import streamlit as st
 from multiapp import MultiApp
 from apps import home, Drought_Monitoring, Drought_Forecasting
-from dataset import *
-from args import get_main_args
 
 st.set_page_config(layout="wide")
 

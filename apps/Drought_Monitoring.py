@@ -1,4 +1,13 @@
 import streamlit as st
+import ee, geemap
+geemap.ee_initialize()
+import gc
+import math
+import numpy as np
+from dataset import GetIndices
+from pca import getPrincipalComponents
+from CMDI import compute_CMDI
+from args import get_main_args
 
 
 def app():
@@ -16,15 +25,6 @@ def app():
     )
     
     # import the necessary libraries
-    import ee, geemap
-    geemap.ee_initialize()
-    import gc
-    import math
-    import numpy as np
-    from dataset import GetIndices
-    from pca import getPrincipalComponents
-    from CMDI import compute_CMDI
-    from args import get_main_args
     args = get_main_args()
     #     import geemap.foliumap as geemap: don't use it, it messes up with the API initialization
     
@@ -156,9 +156,10 @@ def app():
                     
 
     # compute CMDI
-    country = st.button("Compute CMDI", countries)
-    CMDI_image = compute_CMDI(VCI_image, TCI_image, PCI_image, ETCI_image, SMCI_image, weights, roi)
-    Map.addLayer(CMDI_image.clip(roi), args.cdmiVis, 'CMDI, Jan 2012') 
-    Map.add_colorbar(args.cdmiVis, label="CMDI", orientation="vertical", layer_name="CMDI, Jan 2012")
-    Map.to_streamlit()
+    cmdi = st.button("Compute CMDI")
+    if cmdi:
+        CMDI_image = compute_CMDI(VCI_image, TCI_image, PCI_image, ETCI_image, SMCI_image, weights, roi)
+        Map.addLayer(CMDI_image.clip(roi), args.cdmiVis, 'CMDI, Jan 2012') 
+        Map.add_colorbar(args.cdmiVis, label="CMDI", orientation="vertical", layer_name="CMDI, Jan 2012")
+        Map.to_streamlit()
     

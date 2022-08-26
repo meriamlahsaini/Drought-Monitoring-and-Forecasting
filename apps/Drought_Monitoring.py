@@ -19,6 +19,7 @@ def app():
     import ee, geemap
     geemap.ee_initialize()
     import gc
+    import math
     import numpy as np
     from dataset import GetIndices
     from pca import getPrincipalComponents

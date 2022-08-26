@@ -40,7 +40,10 @@ def get_main_args():
     arg("--etciVis", type=dict, default={'min':0.0, 'max': 1.0,
                                         'palette': ['blue', 'orange', 'red']}, help="Visualization Parameters of ETCI")
     arg("--smciVis", type=dict, default={'min':0.0, 'max': 1.0,
-                                        'palette': ['0300ff', '418504','efff07', 'efff07', 'ff0303']}, help="Visualization Parameters of SMCI")    
+                                        'palette': ['0300ff', '418504','efff07', 'efff07', 'ff0303']}, help="Visualization Parameters of SMCI") 
+    arg("--cdmiVis", type=dict, default = {'min':0.0, 'max': 1.0,
+                                           'palette':  ['#a50026','#d73027','#f46d43','#fdae61','#fee08b',
+                                                        '#ffffbf','#d9ef8b','#a6d96a','#66bd63','#1a9850','#006837']}, help="Visualization Parameters of CMDI")
     arg("--scale", type=int, default=250, help="Downsampling Scale")
     arg("--bandNames", type=list, default=['VCI', 'TCI', 'PCI', 'ETCI', 'SMCI'], help="Downsampling Scale")
 

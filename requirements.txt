@@ -1,5 +1,4 @@
 geopandas
-earthengine-api
 keplergl
 streamlit
 streamlit-folium

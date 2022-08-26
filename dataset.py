@@ -1,5 +1,7 @@
 import ee
+import streamlit as st
 
+ 
 class GetIndices():
   def __init__(self, args, roi, index, sum=False):
     
@@ -13,7 +15,7 @@ class GetIndices():
     self.monthly_agg  = self.monthly_Data()
     self.monthly_min, self.monthly_max = self.monthly_Min_Max()
 
-
+  @st.cache
   def filter_data(self):
     if self.index == 'TCI':
       terra_lst = ee.ImageCollection(self.args.terra_LST_dir)

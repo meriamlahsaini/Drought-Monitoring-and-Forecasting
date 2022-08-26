@@ -18,11 +18,14 @@ def app():
     # import the necessary libraries
     import ee, geemap
     geemap.ee_initialize()
+    import gc
+    import numpy as np
+    from dataset import GetIndices
     from pca import getPrincipalComponents
     from CMDI import compute_CMDI
-#     import geemap.foliumap as geemap: don't use it, it messes up with the API initialization
     from args import get_main_args
     args = get_main_args()
+    #     import geemap.foliumap as geemap: don't use it, it messes up with the API initialization
     
     
     st.subheader('Define ROI')
@@ -62,10 +65,7 @@ def app():
     
     args.season = season
     st.subheader(args.season)
-    
-    import gc
-    import numpy as np
-    from dataset import GetIndices
+ 
     
     TCI = GetIndices(args, roi, index='TCI', sum=False).get_scaled_index()
     VCI = GetIndices(args, roi, index='VCI', sum=False).get_scaled_index()

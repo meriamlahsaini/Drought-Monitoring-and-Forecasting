@@ -6,6 +6,7 @@ def app():
 
     # import the necessary libraries
     import ee
+    ee.Initialize()
     import geemap.foliumap as geemap
     import gc
     import numpy as np

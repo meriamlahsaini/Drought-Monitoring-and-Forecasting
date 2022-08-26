@@ -80,8 +80,15 @@ def app():
     listOfETCIImages = ETCI.toList(ETCI.size())
     listOfSMCIImages = SMCI.toList(SMCI.size())
     
-    image_idx = st.slider("Image", 0, VCI.size().getInfo(), 0)                          # display month and year
-    args.idx = image_idx
+    
+    month = ['January', 'February', 'March', 'April']
+    year = ['2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022']
+    dates = [i+' '+j for j in year for i in month]
+    date = st.selectbox("Date", tuple(dates))
+    
+#     image_idx = st.slider("Image", 0, VCI.size().getInfo(), 0)                          # display month and year
+#     args.idx = image_idx
+    args.idx =  tuple(dates).index(date)
     VCI_image = ee.Image(listOfVCIImages.get(args.idx))
     TCI_image = ee.Image(listOfTCIImages.get(args.idx))
     PCI_image = ee.Image(listOfPCIImages.get(args.idx))

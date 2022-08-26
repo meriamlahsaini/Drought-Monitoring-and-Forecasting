@@ -5,8 +5,7 @@ def app():
     st.title("Drought Monitoring")
 
     # import the necessary libraries
-    import ee
-    ee.Initialize()
+    import ee, geemap
     import geemap.foliumap as geemap
     import gc
     import numpy as np

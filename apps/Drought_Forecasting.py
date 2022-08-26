@@ -1,15 +1,14 @@
 import streamlit as st
+# import the necessary libraries
+import ee
+import geemap.foliumap as geemap
+from args import get_main_args
+
 
 
 def app():
     st.title("Drought Forecasting")
-
-    # import the necessary libraries
-    import ee
-    import geemap.foliumap as geemap
-    from args import get_main_args
     args = get_main_args()
-    
     ## ROI
     countries = (
         "Afghanistan",

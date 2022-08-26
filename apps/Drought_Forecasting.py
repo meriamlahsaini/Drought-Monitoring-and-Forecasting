@@ -2,7 +2,7 @@ import streamlit as st
 
 
 def app():
-    st.title("Drought Monitoring")
+    st.title("Drought Forecasting")
 
     # import the necessary libraries
     import ee
@@ -24,8 +24,8 @@ def app():
         "Zambia"
     )
     
-#     st.subheader('Define ROI')
-#     country = st.selectbox("Country", countries)
+    st.subheader('Define ROI')
+    country = st.selectbox("Country", countries)
 #     if country == "Afghanistan":
 #         roi = ee.FeatureCollection(args.afghanistan_dir)
 #     elif country == "Burkina Faso":

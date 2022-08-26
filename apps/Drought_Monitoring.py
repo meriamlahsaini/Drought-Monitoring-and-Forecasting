@@ -18,9 +18,7 @@ def app():
     # import the necessary libraries
     import ee, geemap
     import geemap.foliumap as geemap
-    import gc
-    import numpy as np
-    from dataset import GetIndices
+ 
     from args import get_main_args
     args = get_main_args()
     
@@ -62,6 +60,11 @@ def app():
     
     args.season = season
     st.subheader(args.season)
+    
+    import gc
+    import numpy as np
+    from dataset import GetIndices
+    
     TCI = GetIndices(args, roi, index='TCI', sum=False).get_scaled_index()
     VCI = GetIndices(args, roi, index='VCI', sum=False).get_scaled_index()
     ETCI = GetIndices(args, roi, index='ETCI', sum=True).get_scaled_index()

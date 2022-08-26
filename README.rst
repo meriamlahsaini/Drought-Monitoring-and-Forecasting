@@ -37,6 +37,7 @@ In this folder you will find:
 * `dataset <https://github.com/surajitghoshiwmi/Rim/tree/main/dataset>`__ contains GEE Java Scripts and jupyter notebooks to generate the drought indices and the validation indices;
 * `drought monitoring <https://github.com/surajitghoshiwmi/Rim/tree/main/dought%20monitoring>`__ contains jupyter notebooks for CDMI construction using LightGBM and WNet-Kmeans;
 * `drought forecasting <https://github.com/surajitghoshiwmi/Rim/tree/main/drought%20forecasting>`__ contains jupyter notebook for PCA based CDMI forecasting using ConvLSTM;
-* `requirements.txt <https://github.com/surajitghoshiwmi/Rim/blob/main/requirements.txt>`__ Contains all the necessary libraries.
+* `requirements.txt <https://github.com/Rim-chan/DM/blob/main/requirements.txt>`__ Contains all the necessary libraries.
+
 
 

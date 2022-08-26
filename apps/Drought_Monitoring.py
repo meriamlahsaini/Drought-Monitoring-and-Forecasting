@@ -139,19 +139,21 @@ def app():
     st.subheader('Compute CMDI')
     
     gc.collect()
-    Image = ee.Image.cat([VCI_image.clip(roi), 
+    
+    image = ee.Image.cat([VCI_image.clip(roi), 
                           TCI_image.clip(roi),
                           PCI_image.clip(roi),
                           ETCI_image.clip(roi),
                           SMCI_image.clip(roi)]) 
     
     # Get the PCs at the specified scale and in the specified region
-    pcImage, eigenVectors = getPrincipalComponents(Image, args.scale, roi, args.bandNames)    
+    pcImage, eigenVectors = getPrincipalComponents(image, args.scale, roi, args.bandNames)    
     eigenVectors_np = np.array(eigenVectors.getInfo())[0]
     contrib_coeff = eigenVectors_np**2
     weights = [math.ceil(i*100)/100 for i in contrib_coeff]
     display_weights = st.button('Weights')
-    st.subheader(f"Contribution coefficient of:\n VCI {weights[0]} \n TCI {weights[1]} \n PCI {weights[2]} \n ETCI {weights[3]} \n SMCI {weights[4]}")
+    if display_weights:
+        st.subheader(f"Contribution coefficient of:\n VCI: {weights[0]} \n TCI: {weights[1]} \n PCI: {weights[2]} \n ETCI: {weights[3]} \n SMCI: {weights[4]}")
                     
 
     # compute CMDI

@@ -16,9 +16,9 @@ def app():
     )
     
     # import the necessary libraries
-    import ee
+    import ee, geemap
     geemap.ee_initialize()
-    import geemap.foliumap as geemap
+#     import geemap.foliumap as geemap
  
     from args import get_main_args
     args = get_main_args()
@@ -42,7 +42,7 @@ def app():
         roi = ee.FeatureCollection(args.zambia_dir)
         
     display_boundary_map = st.button('Display Boundary Map')
-    if display_boundary_map:
+    if display_boundary_map: 
         Map = geemap.Map(plugin_Draw=True, Draw_export=False)
         Map.centerObject(roi, 6)
         Map.addLayer(roi, {}, country +'Boundary Map') 

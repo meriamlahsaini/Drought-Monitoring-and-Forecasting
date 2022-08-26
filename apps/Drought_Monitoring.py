@@ -4,6 +4,14 @@ import streamlit as st
 def app():
     st.title("Drought Monitoring")
 
+    # import the necessary libraries
+    import ee
+    import geemap.foliumap as geemap
+    import gc
+    import numpy as np
+    from dataset import GetIndices
+    from args import get_main_args
+    args = get_main_args()
     
     ## ROI
     countries = (
@@ -15,15 +23,6 @@ def app():
         "Senegal",
         "Zambia"
     )
-
-    # import the necessary libraries
-    import ee
-    import geemap.foliumap as geemap
-    import gc
-    import numpy as np
-    from dataset import GetIndices
-    from args import get_main_args
-    args = get_main_args()
     
     st.subheader('Define ROI')
     country = st.selectbox("Country", countries)

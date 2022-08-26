@@ -65,9 +65,7 @@ def app():
     season = st.selectbox("Season", seasons)
     
     args.season = season
-    st.subheader(args.season)
- 
-    
+   
     TCI = GetIndices(args, roi, index='TCI', sum=False).get_scaled_index()
     VCI = GetIndices(args, roi, index='VCI', sum=False).get_scaled_index()
     ETCI = GetIndices(args, roi, index='ETCI', sum=True).get_scaled_index()
@@ -94,6 +92,7 @@ def app():
     PCI_image = ee.Image(listOfPCIImages.get(args.idx))
     ETCI_image = ee.Image(listOfETCIImages.get(args.idx))
     SMCI_image = ee.Image(listOfSMCIImages.get(args.idx))
+    st.subheader(args.idx)
     
     
     input_indcies = (

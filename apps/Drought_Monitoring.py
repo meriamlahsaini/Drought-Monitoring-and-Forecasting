@@ -18,7 +18,7 @@ def app():
     # import the necessary libraries
     import ee, geemap
     geemap.ee_initialize()
-#     import geemap.foliumap as geemap
+#     import geemap.foliumap as geemap: don't use it, it messes up with the API initialization
  
     from args import get_main_args
     args = get_main_args()

@@ -156,9 +156,9 @@ def app():
                     
 
     # compute CMDI
-    cmdi = st.button("Compute CMDI")
+    CMDI_image = compute_CMDI(VCI_image, TCI_image, PCI_image, ETCI_image, SMCI_image, weights, roi)
+    cmdi = st.button("Display CMDI")
     if cmdi:
-        CMDI_image = compute_CMDI(VCI_image, TCI_image, PCI_image, ETCI_image, SMCI_image, weights, roi)
         Map = geemap.Map(zoom = 6, plugin_Draw=True, Draw_export=False)
         Map.centerObject(roi, 6)
         Map.addLayer(CMDI_image.clip(roi), args.cdmiVis, 'CMDI, Jan 2012') 

@@ -28,7 +28,7 @@ def app():
     # import the necessary libraries
     args = get_main_args()
     
-    st.subheader(Define ROI)
+    st.subheader("Define ROI")
     country = st.selectbox("Country", countries)
     if country == "Afghanistan":
         roi = ee.FeatureCollection(args.afghanistan_dir)

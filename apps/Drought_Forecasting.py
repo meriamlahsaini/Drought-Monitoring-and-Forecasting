@@ -1,6 +1,7 @@
 import streamlit as st
 # import the necessary libraries
 import ee
+import geemap
 import geemap.foliumap as geemap
 from args import get_main_args
 

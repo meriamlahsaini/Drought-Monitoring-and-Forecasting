@@ -65,35 +65,25 @@ def app():
     
     args.season = season
     
-    @st.cache
     TCI = GetIndices(args, roi, index='TCI', sum=False).get_scaled_index()
-    @st.cache
     VCI = GetIndices(args, roi, index='VCI', sum=False).get_scaled_index()
-    @st.cache
     ETCI = GetIndices(args, roi, index='ETCI', sum=True).get_scaled_index()
-    @st.cache
     PCI  = GetIndices(args, roi, index='PCI', sum=True).get_scaled_index()
-    @st.cache
     SMCI = GetIndices(args, roi, index='SMCI', sum=False).get_scaled_index()
     
-    @st.cache
     listOfVCIImages = VCI.toList(VCI.size())
-    @st.cache
     listOfTCIImages = TCI.toList(TCI.size())
-    @st.cache
     listOfPCIImages = PCI.toList(PCI.size())
-    @st.cache
     listOfETCIImages = ETCI.toList(ETCI.size())
-    @st.cache
     listOfSMCIImages = SMCI.toList(SMCI.size())
     
     
     if args.season == 'Growing':
         month = ['January', 'February', 'March', 'April']
-        year = ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022']
+        year = ['2016', '2017', '2018', '2019', '2020', '2021', '2022']
     else:
         month = ['November', 'December']
-        year = ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022']
+        year = ['2016', '2017', '2018', '2019', '2020', '2021', '2022']
         
     dates = [i+' '+j for j in year for i in month]
     date = st.selectbox("Date", tuple(dates))

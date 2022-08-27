@@ -79,7 +79,7 @@ def app():
     
     
     month = ['January', 'February', 'March', 'April']
-    year = ['2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022']
+    year = ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022']
     dates = [i+' '+j for j in year for i in month]
     date = st.selectbox("Date", tuple(dates))
     

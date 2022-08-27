@@ -57,8 +57,8 @@ def app():
     st.subheader('Compute Input Indices')
     
     seasons = (
-        "Sowing",
         "Growing",
+        "Sowing"
     )
         
     season = st.selectbox("Season", seasons)

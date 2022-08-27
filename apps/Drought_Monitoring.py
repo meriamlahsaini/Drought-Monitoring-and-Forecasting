@@ -136,35 +136,45 @@ def app():
     display_input_index = st.button('Display '+input_index)
     
     if display_boundary_map:
-        Map = geemap.Map(zoom = 6, plugin_Draw=True, Draw_export=False)
-        Map.centerObject(roi, 6)
         
         if input_index == 'VCI':
+            Map = geemap.Map(zoom = 6, plugin_Draw=True, Draw_export=False)
+            Map.centerObject(roi, 6)
             Map.addLayer(VCI_image.clip(roi), args.vciVis, 'VCI, '+date) 
             Map.add_colorbar(args.vciVis, label="VCI", orientation="vertical", layer_name="VCI, "+date)
             Map.to_streamlit()
     
         elif input_index == 'TCI':
+            Map = geemap.Map(zoom = 6, plugin_Draw=True, Draw_export=False)
+            Map.centerObject(roi, 6)
             Map.addLayer(TCI_image.clip(roi), args.tciVis, 'TCI, '+date) 
             Map.add_colorbar(args.tciVis, label="TCI", orientation="vertical", layer_name="TCI, "+date)
             Map.to_streamlit()
 
         elif input_index == 'PCI':
+            Map = geemap.Map(zoom = 6, plugin_Draw=True, Draw_export=False)
+            Map.centerObject(roi, 6)
             Map.addLayer(PCI_image.clip(roi), args.pciVis, 'PCI, '+date) 
             Map.add_colorbar(args.vciVis, label="PCI", orientation="vertical", layer_name="PCI, "+date)
             Map.to_streamlit()
     
         elif input_index == 'ETCI':
+            Map = geemap.Map(zoom = 6, plugin_Draw=True, Draw_export=False)
+            Map.centerObject(roi, 6)
             Map.addLayer(ETCI_image.clip(roi), args.etciVis, 'ETCI,'+date) 
             Map.add_colorbar(args.etciVis, label="ETCI", orientation="vertical", layer_name="ETCI, "+date)
             Map.to_streamlit()
             
         elif input_index == 'SMCI':
+            Map = geemap.Map(zoom = 6, plugin_Draw=True, Draw_export=False)
+            Map.centerObject(roi, 6)
             Map.addLayer(SMCI_image.clip(roi), args.smciVis, 'SMCI, '+date) 
             Map.add_colorbar(args.smciVis, label="SMCI", orientation="vertical", layer_name="SMCI, "+date)
             Map.to_streamlit()
         
         elif input_index == 'CMDI':
+            Map = geemap.Map(zoom = 6, plugin_Draw=True, Draw_export=False)
+            Map.centerObject(roi, 6)
             Map.addLayer(CMDI_image.clip(roi), args.cdmiVis, 'CMDI,'+date) 
             Map.add_colorbar(args.cdmiVis, label="CMDI", orientation="vertical", layer_name="CMDI, "+date)
             Map.to_streamlit()

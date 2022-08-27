@@ -78,8 +78,13 @@ def app():
     listOfSMCIImages = SMCI.toList(SMCI.size())
     
     
-    month = ['January', 'February', 'March', 'April']
-    year = ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022']
+    if args.season == 'Growing':
+        month = ['January', 'February', 'March', 'April']
+        year = ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022']
+    else:
+        month = ['November', 'December']
+        year = ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022']
+        
     dates = [i+' '+j for j in year for i in month]
     date = st.selectbox("Date", tuple(dates))
     

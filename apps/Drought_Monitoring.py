@@ -124,12 +124,12 @@ def app():
     CMDI_image = compute_CMDI(VCI_image, TCI_image, PCI_image, ETCI_image, SMCI_image, weights, roi)
     
     input_indcies = (
-        "VCI",
-        "TCI",
-        "PCI",
+        "CMDI",
         "ETCI",
+        "PCI",
         "SMCI",
-        "CMDI"
+        "TCI",
+        "VCI"
     )
     
     input_index = st.selectbox("Input Indices", input_indcies)

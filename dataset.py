@@ -62,10 +62,10 @@ class GetIndices():
   
   def seasonal_filter (self): 
     if self.args.season == 'sowing':
-      return self.raw_data.filter(ee.Filter.calendarRange(2012, 2021, 'year')) \
+      return self.raw_data.filter(ee.Filter.calendarRange(2016, 2021, 'year')) \
                           .filter(ee.Filter.calendarRange(11, 12, 'month'))
     else:
-      return self.raw_data.filter(ee.Filter.calendarRange(2012, 2022, 'year')) \
+      return self.raw_data.filter(ee.Filter.calendarRange(2016, 2022, 'year')) \
                           .filter(ee.Filter.calendarRange(1, 4, 'month'))
   
   ## Map over the years and create a monthly aggregates (sum or mean) 

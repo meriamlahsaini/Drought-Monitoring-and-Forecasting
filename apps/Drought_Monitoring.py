@@ -119,10 +119,6 @@ def app():
     if display_weights:
         st.subheader(f"Contribution coefficient of:\n VCI: {weights[0]} \n TCI: {weights[1]} \n PCI: {weights[2]} \n ETCI: {weights[3]} \n SMCI: {weights[4]}")
                     
-
-    # compute CMDI
-    CMDI_image = compute_CMDI(VCI_image, TCI_image, PCI_image, ETCI_image, SMCI_image, weights, roi)
-    
     input_indcies = (
         "CMDI",
         "ETCI",
@@ -135,8 +131,10 @@ def app():
     input_index = st.selectbox("Input Indices", input_indcies)
     display_input_index = st.button('Display '+input_index)
     
-    if display_boundary_map:
-        
+    # compute CMDI
+    CMDI_image = compute_CMDI(VCI_image, TCI_image, PCI_image, ETCI_image, SMCI_image, weights, roi)
+    
+    if display_input_index:
         if input_index == 'VCI':
             Map = geemap.Map(zoom = 6, plugin_Draw=True, Draw_export=False)
             Map.centerObject(roi, 6)

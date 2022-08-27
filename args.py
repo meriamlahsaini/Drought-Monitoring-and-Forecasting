@@ -19,7 +19,7 @@ def get_main_args():
     arg("--modis_ET_dir", type=str, default="MODIS/006/MOD16A2", help="ET Image Collection")
     arg("--precip_dir", type=str, default="NASA/GPM_L3/IMERG_V06", help="Precip Image Collection")
     arg("--sm_dir", type=str, default="NASA/GLDAS/V021/NOAH/G025/T3H", help="SM Image Collection")
-    arg("--years", type=list, default=[2015+i for i in range(8)], help="Study Period Range-years")
+    arg("--years", type=list, default=[2016+i for i in range(7)], help="Study Period Range-years")
     arg("--months", type=list, default=[1, 2, 3, 4], help="Study Period Range-months")
     arg("--season", type=str, default='growing', help="Study Period Season")
     arg("--visualize", type=bool, default=True, help="Option to Display Maps")

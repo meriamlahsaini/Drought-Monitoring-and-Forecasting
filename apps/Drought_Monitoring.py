@@ -64,17 +64,27 @@ def app():
     season = st.selectbox("Season", seasons)
     
     args.season = season
-   
+    
+    @st.cache
     TCI = GetIndices(args, roi, index='TCI', sum=False).get_scaled_index()
+    @st.cache
     VCI = GetIndices(args, roi, index='VCI', sum=False).get_scaled_index()
+    @st.cache
     ETCI = GetIndices(args, roi, index='ETCI', sum=True).get_scaled_index()
+    @st.cache
     PCI  = GetIndices(args, roi, index='PCI', sum=True).get_scaled_index()
+    @st.cache
     SMCI = GetIndices(args, roi, index='SMCI', sum=False).get_scaled_index()
     
+    @st.cache
     listOfVCIImages = VCI.toList(VCI.size())
+    @st.cache
     listOfTCIImages = TCI.toList(TCI.size())
+    @st.cache
     listOfPCIImages = PCI.toList(PCI.size())
+    @st.cache
     listOfETCIImages = ETCI.toList(ETCI.size())
+    @st.cache
     listOfSMCIImages = SMCI.toList(SMCI.size())
     
     

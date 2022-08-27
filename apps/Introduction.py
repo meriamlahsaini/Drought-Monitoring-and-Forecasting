@@ -15,17 +15,12 @@ def app():
     st.sidebar.title("Contact")
     st.sidebar.info(
         """
-        [GitHub](https://github.com/Rim-chan) |[Gmail](rim.sleimi@etudiant-fst.utm.tn) | [LinkedIn](https://www.linkedin.com/in/rim-sleimi/)
+        [GitHub](https://github.com/Rim-chan) |[LinkedIn](https://www.linkedin.com/in/rim-sleimi/)
         """
     )
     
 
-    st.markdown(
-        """
-    This multi-page web app demonstrates drought monitoring an forecasting created using [streamlit](https://streamlit.io) and open-source mapping libraries, 
-    such as [leafmap](https://leafmap.org), [geemap](https://geemap.org), [pydeck](https://deckgl.readthedocs.io), and [kepler.gl](https://docs.kepler.gl/docs/keplergl-jupyter).
-    """
-    )
+    st.info('This multi-page web app demonstrates drought monitoring an forecasting created using [streamlit](https://streamlit.io) and open-source mapping libraries, such as [leafmap](https://leafmap.org), [geemap](https://geemap.org), [pydeck](https://deckgl.readthedocs.io), and [kepler.gl](https://docs.kepler.gl/docs/keplergl-jupyter).)
    
     st.markdown(
         """

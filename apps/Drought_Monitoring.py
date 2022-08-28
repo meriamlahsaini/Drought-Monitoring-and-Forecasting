@@ -5,9 +5,10 @@ geemap.ee_initialize()
 import gc
 import math
 import numpy as np
-from dataset import GetIndices
-from pca import getPrincipalComponents
-from CMDI import compute_CMDI
+from drought_monitoring import dataset, pca, CMDI
+# from dataset import GetIndices
+# from pca import getPrincipalComponents
+# from CMDI import compute_CMDI
 from args import get_main_args
 
 
@@ -65,11 +66,11 @@ def app():
     
     args.season = season
     
-    TCI = GetIndices(args, roi, index='TCI', sum=False).get_scaled_index()
-    VCI = GetIndices(args, roi, index='VCI', sum=False).get_scaled_index()
-    ETCI = GetIndices(args, roi, index='ETCI', sum=True).get_scaled_index()
-    PCI  = GetIndices(args, roi, index='PCI', sum=True).get_scaled_index()
-    SMCI = GetIndices(args, roi, index='SMCI', sum=False).get_scaled_index()
+    TCI = dataset.GetIndices(args, roi, index='TCI', sum=False).get_scaled_index()
+    VCI = dataset.GetIndices(args, roi, index='VCI', sum=False).get_scaled_index()
+    ETCI = dataset.GetIndices(args, roi, index='ETCI', sum=True).get_scaled_index()
+    PCI  = dataset.GetIndices(args, roi, index='PCI', sum=True).get_scaled_index()
+    SMCI = dataset.GetIndices(args, roi, index='SMCI', sum=False).get_scaled_index()
     
     listOfVCIImages = VCI.toList(VCI.size())
     listOfTCIImages = TCI.toList(TCI.size())
@@ -88,8 +89,7 @@ def app():
     dates = [i+' '+j for j in year for i in month]
     date = st.selectbox("Date", tuple(dates))
     
-#     image_idx = st.slider("Image", 0, VCI.size().getInfo(), 0)                          # display month and year
-#     args.idx = image_idx
+
     args.idx =  tuple(dates).index(date)
     VCI_image = ee.Image(listOfVCIImages.get(args.idx))
     TCI_image = ee.Image(listOfTCIImages.get(args.idx))
@@ -111,7 +111,7 @@ def app():
                           SMCI_image.clip(roi)]) 
     
     # Get the PCs at the specified scale and in the specified region
-    pcImage, eigenVectors = getPrincipalComponents(image, args.scale, roi, args.bandNames)    
+    pcImage, eigenVectors = pca.getPrincipalComponents(image, args.scale, roi, args.bandNames)    
     eigenVectors_np = np.array(eigenVectors.getInfo())[0]
     contrib_coeff = eigenVectors_np**2
     weights = [math.ceil(i*100)/100 for i in contrib_coeff]
@@ -132,7 +132,7 @@ def app():
     display_input_index = st.button('Display '+input_index)
     
     # compute CMDI
-    CMDI_image = compute_CMDI(VCI_image, TCI_image, PCI_image, ETCI_image, SMCI_image, weights, roi)
+    CMDI_image = CMDI.compute_CMDI(VCI_image, TCI_image, PCI_image, ETCI_image, SMCI_image, weights, roi)
     
     if display_input_index:
         if input_index == 'VCI':

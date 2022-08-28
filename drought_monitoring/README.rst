@@ -88,11 +88,7 @@ Folder Structure
 ----------------
 In this folder you will find:
 
-* `preprocess_GEE <https://github.com/surajitghoshiwmi/Rim/tree/main/dataset/preprocess_GEE>`__ contains GEE Java Scripts to generate the drought indices and the validation indices.
-* `preprocess.py <https://github.com/surajitghoshiwmi/Rim/blob/main/dataset/preprocess.py>`__ contains geemap based python code to generate the drought indices and the validation indices. 
-* `PCA_CDMI_[Zambia].ipynb <https://github.com/surajitghoshiwmi/Rim/blob/main/dataset/PCA_CDMI_[Zambia].ipynb>`__ Google Colab notebook to generate the drought indices and the validation indices. 
-* `SPI_based_on_IMERG_HalfHourlyData_[Zambia].ipynb <https://github.com/surajitghoshiwmi/Rim/blob/main/dataset/SPI_based_on_IMERG_HalfHourlyData_[Zambia].ipynb>`__ Google Colab notebook to generate SPI at different time scales using half hourly IMERG data.
-* `SPI_based_on_IMERG_DailyData_[Zambia].ipynb <https://github.com/surajitghoshiwmi/Rim/blob/main/dataset/SPI_based_on_IMERG_DailyData_[Zambia].ipynb>`__ Google Colab notebook to generate SPI at different time scales using daily IMERG data.
+
 
 
 

@@ -34,10 +34,19 @@ Project Structure
 ------------------
 In this folder you will find:
 
+* `preprocess_GEE <https://github.com/Rim-chan/DM/tree/main/preprocess_GEE>`__ contains GEE Java Scripts to generate the drought indices and the validation indices.
+* `drought forecasting <https://github.com/Rim-chan/DM/tree/main/drought_forecasting>`__ contains jupyter notebook for PCA based CMDI forecasting using ConvLSTM;
+
+
+
 * `dataset <https://github.com/surajitghoshiwmi/Rim/tree/main/dataset>`__ contains GEE Java Scripts and jupyter notebooks to generate the drought indices and the validation indices;
 * `drought monitoring <https://github.com/surajitghoshiwmi/Rim/tree/main/dought%20monitoring>`__ contains jupyter notebooks for CDMI construction using LightGBM and WNet-Kmeans;
-* `drought forecasting <https://github.com/surajitghoshiwmi/Rim/tree/main/drought%20forecasting>`__ contains jupyter notebook for PCA based CDMI forecasting using ConvLSTM;
+
 * `requirements.txt <https://github.com/Rim-chan/DM/blob/main/requirements.txt>`__ Contains all the necessary libraries.
 
 
+* `preprocess.py <https://github.com/surajitghoshiwmi/Rim/blob/main/dataset/preprocess.py>`__ contains geemap based python code to generate the drought indices and the validation indices. 
+* `PCA_CDMI_[Zambia].ipynb <https://github.com/surajitghoshiwmi/Rim/blob/main/dataset/PCA_CDMI_[Zambia].ipynb>`__ Google Colab notebook to generate the drought indices and the validation indices. 
+* `SPI_based_on_IMERG_HalfHourlyData_[Zambia].ipynb <https://github.com/surajitghoshiwmi/Rim/blob/main/dataset/SPI_based_on_IMERG_HalfHourlyData_[Zambia].ipynb>`__ Google Colab notebook to generate SPI at different time scales using half hourly IMERG data.
+* `SPI_based_on_IMERG_DailyData_[Zambia].ipynb <https://github.com/surajitghoshiwmi/Rim/blob/main/dataset/SPI_based_on_IMERG_DailyData_[Zambia].ipynb>`__ Google Colab notebook to generate SPI at different time scales using daily IMERG data.
 

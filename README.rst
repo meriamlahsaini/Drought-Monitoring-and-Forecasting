@@ -17,7 +17,7 @@ Drought is a climate-related disaster that negatively impacts a variety of secto
 * Derive a new composite drought index (CMDI) that encapsulates the effects of different drivers (climate- precipitation and temperature, Agriculture- vegetation, evapotranspiration, soil moisture). 
 * Implement ConvLSTM for Spatio-temporal prediction of CMDI. 
 * Demonstrate that online platforms such as Google Earth Engine - a cloud-based geospatial analysis, as well as Google Colab and Kaggle which offer free yet limited GPU usage, are effective tools for carrying out the analysis of global geospatial big data at scale. Therefore, leveraging them can help bypass the need for expensive and limited datasets and hardware. 
-* Compare the spatial-temporal distribution of CDMI with multi-time scale SPI (3-month to 12-month) and Gross Primary production (GPP).
+* Compare the spatial-temporal distribution of CMDI with multi-time scale SPI (3-month to 12-month) and Gross Primary production (GPP).
 
 
 .. figure:: https://github.com/Rim-chan/DM/blob/main/images/Drought%20Monitoring%20and%20Forecasting%20Workflow.jpg

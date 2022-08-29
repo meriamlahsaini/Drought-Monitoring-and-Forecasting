@@ -14,8 +14,8 @@ Introduction
 -------------
 Drought is a climate-related disaster that negatively impacts a variety of sectors and poses challenges for millions of people in Zambia. The occurrence and the increase in drought severity result in significant losses to the farming community. As an agrarian economy, establishing drought monitoring and early warning systems can help decision-makers better act in response to drought. The overarching objective of this study is to address this problem through the development of a drought monitoring and forecasting system, leveraging the synergistic use of Principal Component Analysis (PCA) and convolutional long short term memory (ConvLSTM) over Zambia. The main objectives are:
 
-* Derive a new composite drought index (CDMI) that encapsulates the effects of different drivers (climate- precipitation and temperature, Agriculture- vegetation, evapotranspiration, soil moisture). 
-* Implement ConvLSTM for Spatio-temporal prediction of CDMI. 
+* Derive a new composite drought index (CMDI) that encapsulates the effects of different drivers (climate- precipitation and temperature, Agriculture- vegetation, evapotranspiration, soil moisture). 
+* Implement ConvLSTM for Spatio-temporal prediction of CMDI. 
 * Demonstrate that online platforms such as Google Earth Engine - a cloud-based geospatial analysis, as well as Google Colab and Kaggle which offer free yet limited GPU usage, are effective tools for carrying out the analysis of global geospatial big data at scale. Therefore, leveraging them can help bypass the need for expensive and limited datasets and hardware. 
 * Compare the spatial-temporal distribution of CDMI with multi-time scale SPI (3-month to 12-month) and Gross Primary production (GPP).
 

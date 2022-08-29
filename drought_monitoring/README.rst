@@ -16,7 +16,7 @@ Drought Dataset
 
 Introduction
 ------------
-In this study, I propose the construction of an integrated drought monitoring index (CDMI) that takes into account precipitation, temperature, and vegetation as explanatory variables to monitor drought in the countries of interest. These countries are poorly instrumented areas (e.g., Zambia) of the world and lack good quality ground truth data. Therefore, datasets from remote sensing were used to calculate drought indices. The specification of these datasets are presented in the following table:
+In this study, I propose the construction of an integrated drought monitoring index (CMDI) that takes into account precipitation, temperature, and vegetation as explanatory variables to monitor drought in the countries of interest. These countries are poorly instrumented areas (e.g., Zambia) of the world and lack good quality ground truth data. Therefore, datasets from remote sensing were used to calculate drought indices. The specification of these datasets are presented in the following table:
 
 
 .. figure:: https://github.com/surajitghoshiwmi/Rim/blob/main/images/data%20specs.png
@@ -83,66 +83,3 @@ Experimental Setup
 As for the experimental setup I used `Google Earth Engine (GEE) <https://earthengine.google.com/>`__ . A cloud computing platform which was launched by Google, in 2010.
 GEE provides free access to numerous remotely sensed datasets as well as computing power, facilitating big geo data processing and analysis .
 In addition `geemap <https://geemap.org/>`__ -a Python package for interactive mapping with Google Earth Engine and Google Collaboratory were also used for the calculation of the construction of the drought index.  `climate-indices <https://pypi.org/project/climate-indices/>`__  -python package is used for SPI claculations.
-
-Folder Structure
-----------------
-In this folder you will find:
-
-
-
-
-
-
-Instructions for Data Preprocessing and Generation
---------------------------------------------------
-
-This section provides instructions for the Data preprocessing and generation phase.
-
-- To use the Java Script in GEE:
- `GEE Repo <https://code.earthengine.google.com/?accept_repo=users/Plottings/drought_dataset>`__
-
-- To use the python code:
-
-**Prepare environment**
-
-.. code:: python
- 
-  # Install geemap package
-  import subprocess
-
-  try:
-      import geemap
-  except ImportError:
-      print('Installing geemap ...')
-      subprocess.check_call(["python", '-m', 'pip', 'install', 'geemap'])
-      
-.. code:: python
-
-  # git clone source
-  !git clone https://Rim-chan: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@github.com/Rim-chan/IWMI-Drought-Monitoring.git
-   
-**Data Preprocessing**
-
-.. code:: python
-
-  !python ./IWMI-Drought-Monitoring/dataset/preprocess.py
-  
-  
-- To run the full python code using Google Colab:
-For SPI Calculation suing daily IMERG data:
-  
- .. image:: https://colab.research.google.com/assets/colab-badge.svg
-         :target: https://colab.research.google.com/github/surajitghoshiwmi/Rim/blob/main/dataset/SPI_based_on_IMERG_DailyData_[Zambia].ipynb
-
-For SPI Calculation suing half hourly IMERG data:
-  
- .. image:: https://colab.research.google.com/assets/colab-badge.svg
-         :target: https://colab.research.google.com/github/surajitghoshiwmi/Rim/blob/main/dataset/SPI_based_on_IMERG_HalfHourlyData_[Zambia].ipynb
- 
-For PCA-CDMI Calculation:
-  
- .. image:: https://colab.research.google.com/assets/colab-badge.svg
-         :target: https://colab.research.google.com/github/surajitghoshiwmi/Rim/blob/main/dataset/PCA_CDMI_[Zambia].ipynb
-        
-        
-    

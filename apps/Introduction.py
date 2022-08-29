@@ -7,7 +7,7 @@ def app():
     st.sidebar.title("About")
     st.sidebar.info(
     """
-    Web App URL: <https://rim-chan-dm-app-344y39.streamlitapp.com/>
+    Web App URL: <https://rim-chan-dm-app-jl2fv0.streamlitapp.com/>
     GitHub repository: <https://github.com/Rim-chan/DM>
     """
     )

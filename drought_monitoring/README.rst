@@ -17,7 +17,7 @@ Introduction
 In this study, I propose the construction of an integrated drought monitoring index (CMDI) that takes into account precipitation, temperature, and vegetation as explanatory variables to monitor drought in the countries of interest. These countries are poorly instrumented areas (e.g., Zambia) of the world and lack good quality ground truth data. Therefore, datasets from remote sensing were used to calculate drought indices. The specification of these datasets are presented in the following table:
 
 
-.. figure:: https://github.com/surajitghoshiwmi/Rim/blob/main/images/data%20specs.png
+.. figure:: https://github.com/Rim-chan/Drought-Monitoring-and-Forecasting/blob/main/images/data%20specs.png
     :align: center
 
     
@@ -56,7 +56,7 @@ As input parameters for the construction of the drought index in the study areas
 
 
 
-.. figure:: https://github.com/surajitghoshiwmi/Rim/blob/main/images/indices.png
+.. figure:: https://github.com/Rim-chan/Drought-Monitoring-and-Forecasting/blob/main/images/indices.png
     :align: center
     
     

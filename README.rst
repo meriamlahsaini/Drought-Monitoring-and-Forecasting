@@ -62,13 +62,13 @@ This section provides instructions for the Data preprocessing and generation pha
 For SPI Calculation suing daily IMERG data:
   
  .. image:: https://colab.research.google.com/assets/colab-badge.svg
-         :target: https://colab.research.google.com/github/Rim-chan/DM/blob/main/dataset/SPI_based_on_IMERG_DailyData_[Zambia].ipynb
+         :target: https://colab.research.google.com/github/Rim-chan/DM/blob/main/SPI/SPI_based_on_IMERG_DailyData_[Zambia].ipynb
          
 
 - For SPI Calculation suing half hourly IMERG data:
   
  .. image:: https://colab.research.google.com/assets/colab-badge.svg
-         :target: https://colab.research.google.com/github/Rim-chan/DM/blob/main/dataset/SPI_based_on_IMERG_HalfHourlyData_[Zambia].ipynb
+         :target: https://colab.research.google.com/github/Rim-chan/DM/blob/main/SPI/SPI_based_on_IMERG_HalfHourlyData_[Zambia].ipynb
  
 - For PCA-CDMI Calculation:
   

@@ -6,10 +6,8 @@ Drought Dataset
 
 - `Introduction`_
 - `Data Preprocessing`_
-- `CDMI Construction`_
-- `CDMI Validation`_
-- `Experimental Setup`_
-- `Folder Structure`_
+- `CMDI Construction`_
+- `CMDI Validation`_
 
 
 
@@ -74,12 +72,4 @@ In this last step, the aim is to determine the weights of the input variables. T
 
 CDMI Validation
 ----------------
-SPI-3, SPI-6, SPI-9, SPI-12, and GPP data derived from IMERG and MODIS respectively were used to validate the resulting monthly CDMI data.  
-
-
-
-Experimental Setup
-------------------
-As for the experimental setup I used `Google Earth Engine (GEE) <https://earthengine.google.com/>`__ . A cloud computing platform which was launched by Google, in 2010.
-GEE provides free access to numerous remotely sensed datasets as well as computing power, facilitating big geo data processing and analysis .
-In addition `geemap <https://geemap.org/>`__ -a Python package for interactive mapping with Google Earth Engine and Google Collaboratory were also used for the calculation of the construction of the drought index.  `climate-indices <https://pypi.org/project/climate-indices/>`__  -python package is used for SPI claculations.
+SPI-3, SPI-6, SPI-9, SPI-12, and GPP data derived from IMERG and MODIS respectively were used to validate the resulting monthly CMDI data.  

@@ -56,7 +56,7 @@ This section provides instructions for the Data preprocessing and generation pha
  To use the streamlit app:
  
  .. image:: https://static.streamlit.io/badges/streamlit_badge_black_white.svg
-         :target: https://rim-chan-dm-app-344y39.streamlitapp.com/
+         :target: https://rim-chan-dm-app-jl2fv0.streamlitapp.com/
 
 - To run the full python code using Google Colab:
 For SPI Calculation suing daily IMERG data:
@@ -75,4 +75,3 @@ For PCA-CDMI Calculation:
  .. image:: https://colab.research.google.com/assets/colab-badge.svg
          :target: https://colab.research.google.com/github/Rim-chan/DM/blob/main/dataset/PCA_CDMI_[Zambia].ipynb
          
-

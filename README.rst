@@ -53,7 +53,7 @@ This section provides instructions for the Data preprocessing and generation pha
 - To use the Java Script in GEE:
  `GEE Repo <https://code.earthengine.google.com/?accept_repo=users/Plottings/drought_dataset>`__
  
- To use the streamlit app:
+- To use the streamlit app:
  
  .. image:: https://static.streamlit.io/badges/streamlit_badge_black_white.svg
          :target: https://rim-chan-dm-app-jl2fv0.streamlitapp.com/
@@ -65,12 +65,12 @@ For SPI Calculation suing daily IMERG data:
          :target: https://colab.research.google.com/github/Rim-chan/DM/blob/main/dataset/SPI_based_on_IMERG_DailyData_[Zambia].ipynb
          
 
-For SPI Calculation suing half hourly IMERG data:
+- For SPI Calculation suing half hourly IMERG data:
   
  .. image:: https://colab.research.google.com/assets/colab-badge.svg
          :target: https://colab.research.google.com/github/Rim-chan/DM/blob/main/dataset/SPI_based_on_IMERG_HalfHourlyData_[Zambia].ipynb
  
-For PCA-CDMI Calculation:
+- For PCA-CDMI Calculation:
   
  .. image:: https://colab.research.google.com/assets/colab-badge.svg
          :target: https://colab.research.google.com/github/Rim-chan/DM/blob/main/dataset/PCA_CDMI_[Zambia].ipynb

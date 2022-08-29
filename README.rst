@@ -52,34 +52,12 @@ This section provides instructions for the Data preprocessing and generation pha
 
 - To use the Java Script in GEE:
  `GEE Repo <https://code.earthengine.google.com/?accept_repo=users/Plottings/drought_dataset>`__
-
-- To use the python code:
-
-**Prepare environment**
-
-.. code:: python
  
-  # Install geemap package
-  import subprocess
+ To use the streamlit app:
+ 
+ .. image:: https://static.streamlit.io/badges/streamlit_badge_black_white.svg
+         :target: https://rim-chan-dm-app-344y39.streamlitapp.com/
 
-  try:
-      import geemap
-  except ImportError:
-      print('Installing geemap ...')
-      subprocess.check_call(["python", '-m', 'pip', 'install', 'geemap'])
-      
-.. code:: python
-
-  # git clone source
-  !git clone https://Rim-chan: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@github.com/Rim-chan/IWMI-Drought-Monitoring.git
-   
-**Data Preprocessing**
-
-.. code:: python
-
-  !python ./IWMI-Drought-Monitoring/dataset/preprocess.py
-  
-  
 - To run the full python code using Google Colab:
 For SPI Calculation suing daily IMERG data:
   
@@ -97,6 +75,4 @@ For PCA-CDMI Calculation:
  .. image:: https://colab.research.google.com/assets/colab-badge.svg
          :target: https://colab.research.google.com/github/Rim-chan/DM/blob/main/dataset/PCA_CDMI_[Zambia].ipynb
          
-To use the streamlit app:
-  .. image:: https://static.streamlit.io/badges/streamlit_badge_black_white.svg
-         :target: https://rim-chan-dm-app-344y39.streamlitapp.com/
+

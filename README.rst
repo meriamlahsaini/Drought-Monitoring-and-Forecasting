@@ -99,4 +99,4 @@ For PCA-CDMI Calculation:
          
 To use the streamlit app:
   .. image:: https://static.streamlit.io/badges/streamlit_badge_black_white.svg
-         :target: https://rim-chan-dm-app-344y39.streamlitapp.com
+         :target: https://rim-chan-dm-app-344y39.streamlitapp.com/

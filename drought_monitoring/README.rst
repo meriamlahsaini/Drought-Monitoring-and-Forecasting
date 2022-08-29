@@ -61,7 +61,7 @@ As input parameters for the construction of the drought index in the study areas
     
     
     
-CDMI Construction
+CMDI Construction
 ------------------
 Principal Component Analysis (PCA) is performed here to determine the weights for the drought factors. This produces a different weight value per year and per month for each input variable as shown in the equation below. When the CDMI is calculated for February, the weights will be different to when the CDMI is calculated for April, etc. The main steps of this technique include: (1) Standardization of the data (2) Calculation of the covariance matrix. (3) Computing the eigenvectors and eigenvalues of the co-variance matrix (4) Solving the principal components, generally only considering the principal components with eigenvalues exceeding 1. (5) Calculation of the contribution rate.
 
@@ -70,6 +70,6 @@ In this last step, the aim is to determine the weights of the input variables. T
 :raw-math:`$$  CDMI_{y,m}  = W_{VCI,y,m}* VCI_{y,m}+ W_{TCI,y,m}*TCI_{y,m}+ W_{PCI,y,m}*PCI_{y,m}+W_{ETCI,y,m}*ETCI_{y,m}+W_{SMCI,y,m}*SMCI_{y,m} $$`
 
 
-CDMI Validation
+CMDI Validation
 ----------------
 SPI-3, SPI-6, SPI-9, SPI-12, and GPP data derived from IMERG and MODIS respectively were used to validate the resulting monthly CMDI data.  

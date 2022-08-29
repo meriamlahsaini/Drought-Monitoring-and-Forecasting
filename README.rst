@@ -98,4 +98,5 @@ For PCA-CDMI Calculation:
          :target: https://colab.research.google.com/github/Rim-chan/DM/blob/main/dataset/PCA_CDMI_[Zambia].ipynb
          
 To use the streamlit app:
- [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://rim-chan-dm-app-344y39.streamlitapp.com/)
+  .. image:: https://static.streamlit.io/badges/streamlit_badge_black_white.svg
+         :target: https://rim-chan-dm-app-344y39.streamlitapp.com

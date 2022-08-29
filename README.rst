@@ -1,6 +1,8 @@
 ==========================
 PCA-ConvLSTM Network: A Machine Learning Approach for Drought Monitoring and Forecasting – Case study of Zambia
 ==========================
+ .. image:: https://static.streamlit.io/badges/streamlit_badge_black_white.svg
+         :target: https://rim-chan-drought-monitoring-and-forecasting-app-qjoet8.streamlitapp.com/
 
 
 **Content**
@@ -56,7 +58,7 @@ This section provides instructions for the Data preprocessing and generation pha
 - To use the streamlit app:
  
  .. image:: https://static.streamlit.io/badges/streamlit_badge_black_white.svg
-         :target: https://rim-chan-dm-app-jl2fv0.streamlitapp.com/
+         :target: https://rim-chan-drought-monitoring-and-forecasting-app-qjoet8.streamlitapp.com/
 
 - To run the full python code using Google Colab:
 For SPI Calculation suing daily IMERG data:

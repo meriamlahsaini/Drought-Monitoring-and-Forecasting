@@ -1,5 +1,5 @@
 ==========================
-PCA-ConvLSTM Network: A Machine Learning Approach for Drought Monitoring and Forecasting – Case study of Zambia
+PCA-ConvLSTM Network: A Machine Learning Approach for Drought Monitoring and Forecasting
 ==========================
  .. image:: https://static.streamlit.io/badges/streamlit_badge_black_white.svg
          :target: https://rim-chan-drought-monitoring-and-forecasting-app-qjoet8.streamlitapp.com/

@@ -5,6 +5,7 @@ geemap.ee_initialize()
 import time
 import gc
 import math
+import datetime
 import numpy as np
 from drought_monitoring import dataset, pca, CMDI
 # from dataset import GetIndices
@@ -97,7 +98,7 @@ def app():
         
     d = st.date_input(
         "Select a month and a year",
-        datetime.date(2016, 1, 1))
+        datetime.date(2016, 1))
         
     dates = [i+' '+j for j in year for i in month]
     date = st.selectbox("Date", tuple(dates))

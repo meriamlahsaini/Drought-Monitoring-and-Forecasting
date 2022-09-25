@@ -3,6 +3,7 @@ import ee, geemap
 geemap.ee_initialize()
 #     import geemap.foliumap as geemap: don't use it, it messes up with the API initialization
 import time
+from alive_progress import alive_bar
 import gc
 import math
 import numpy as np
@@ -31,6 +32,8 @@ def app():
     args = get_main_args()
     
     st.subheader("Define ROI")
+    roi_st = time.time()
+    roi_bar = st.progress(0)
     country = st.selectbox("Country", countries)
     if country == "Afghanistan":
         roi = ee.FeatureCollection(args.afghanistan_dir)
@@ -54,7 +57,9 @@ def app():
         Map.addLayer(roi, {}, country +'Boundary Map') 
         Map.to_streamlit()
 
-        
+    roi_et = time.time()
+    roi_time = roi_et - roi_st
+    roi_bar = st.progress(roi_time)
     ## INPUT INDICES: VCI, TCI, PCI, ETCI, SMCI
     st.subheader('Compute Input Indices')
     

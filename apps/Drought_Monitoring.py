@@ -31,8 +31,8 @@ def app():
     args = get_main_args()
     
     st.subheader("Define ROI")
-    roi_st = time.time()
-    roi_bar = st.progress(0)
+#     roi_st = time.time()
+#     roi_bar = st.progress(0)
     
     country = st.selectbox("Country", countries)
     if country == "Afghanistan":
@@ -49,7 +49,7 @@ def app():
         roi = ee.FeatureCollection(args.senegal_dir)      
     elif country == "Zambia":
         roi = ee.FeatureCollection(args.zambia_dir)
-        
+    
     display_boundary_map = st.button('Display Boundary Map')
     if display_boundary_map: 
         Map = geemap.Map(plugin_Draw=True, Draw_export=False)
@@ -57,25 +57,30 @@ def app():
         Map.addLayer(roi, {}, country +'Boundary Map') 
         Map.to_streamlit()
 
-    roi_et = time.time()
-    roi_time = roi_et - roi_st
-    for t in roi_time:
-        time.sleep(0.1)
-        roi_bar = st.progress(t)
+#     roi_et = time.time()
+#     roi_time = roi_et - roi_st
+#     for t in roi_time:
+#         time.sleep(0.1)
+#         roi_bar = st.progress(t)
 
         
         
     ## INPUT INDICES: VCI, TCI, PCI, ETCI, SMCI
-    st.subheader('Compute Input Indices')
+#     st.subheader('Compute Input Indices')
     
-    seasons = (
-        "Growing",
-        "Sowing"
-    )
+    genre = st.radio(
+     "Compute Input Indices",
+     ('Growing', 'Sowing'),
+     horizontal=True)
+    
+#     seasons = (
+#         "Growing",
+#         "Sowing"
+#     )
         
-    season = st.selectbox("Season", seasons)
+#     season = st.selectbox("Season", seasons)
     
-    args.season = season
+    args.season = genre
     
     TCI = dataset.GetIndices(args, roi, index='TCI', sum=False).get_scaled_index()
     VCI = dataset.GetIndices(args, roi, index='VCI', sum=False).get_scaled_index()

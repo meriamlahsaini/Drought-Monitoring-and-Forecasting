@@ -97,7 +97,7 @@ def app():
         
     d = st.date_input(
         "Select a month and a year",
-        datetime.date(2016, 1))
+        datetime.date(2016, 1, 1))
         
     dates = [i+' '+j for j in year for i in month]
     date = st.selectbox("Date", tuple(dates))

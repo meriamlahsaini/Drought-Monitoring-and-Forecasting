@@ -3,7 +3,6 @@ import ee, geemap
 geemap.ee_initialize()
 #     import geemap.foliumap as geemap: don't use it, it messes up with the API initialization
 import time
-from alive_progress import alive_bar
 import gc
 import math
 import numpy as np

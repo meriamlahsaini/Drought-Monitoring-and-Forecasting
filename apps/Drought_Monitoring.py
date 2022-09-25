@@ -33,7 +33,11 @@ def app():
     st.subheader("Define ROI")
     roi_st = time.time()
     roi_bar = st.progress(0)
-    roi_bar = st.progress(time.time())
+#     roi_bar = st.progress(time.time())
+    
+    for percent_complete in range(100):
+        time.sleep(0.1)
+        roi_bar.progress(percent_complete + 1)
     
     country = st.selectbox("Country", countries)
     if country == "Afghanistan":

@@ -59,11 +59,10 @@ def app():
 
     roi_et = time.time()
     roi_time = roi_et - roi_st
-    roi_bar = st.progress(time.time())
-    
-#     for percent_complete in range(100):
-#         time.sleep(0.1)
-#         roi_bar.progress(percent_complete + 1)
+    for t in roi_time:
+        time.sleep(0.1)
+        roi_bar = st.progress(t)
+
         
         
     ## INPUT INDICES: VCI, TCI, PCI, ETCI, SMCI

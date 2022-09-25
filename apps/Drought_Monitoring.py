@@ -33,6 +33,8 @@ def app():
     st.subheader("Define ROI")
     roi_st = time.time()
     roi_bar = st.progress(0)
+    roi_bar = st.progress(time.time())
+    
     country = st.selectbox("Country", countries)
     if country == "Afghanistan":
         roi = ee.FeatureCollection(args.afghanistan_dir)
@@ -56,9 +58,9 @@ def app():
         Map.addLayer(roi, {}, country +'Boundary Map') 
         Map.to_streamlit()
 
-    roi_et = time.time()
-    roi_time = roi_et - roi_st
-    roi_bar = st.progress(roi_time)
+#     roi_et = time.time()
+#     roi_time = roi_et - roi_st
+    
     ## INPUT INDICES: VCI, TCI, PCI, ETCI, SMCI
     st.subheader('Compute Input Indices')
     

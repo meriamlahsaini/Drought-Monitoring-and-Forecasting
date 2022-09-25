@@ -68,19 +68,12 @@ def app():
     ## INPUT INDICES: VCI, TCI, PCI, ETCI, SMCI
 #     st.subheader('Compute Input Indices')
     
-    genre = st.radio(
+    season = st.radio(
      "Compute Input Indices",
      ('Growing', 'Sowing'),
      horizontal=True)
     
-#     seasons = (
-#         "Growing",
-#         "Sowing"
-#     )
-        
-#     season = st.selectbox("Season", seasons)
-    
-    args.season = genre
+    args.season = season
     
     TCI = dataset.GetIndices(args, roi, index='TCI', sum=False).get_scaled_index()
     VCI = dataset.GetIndices(args, roi, index='VCI', sum=False).get_scaled_index()
@@ -101,6 +94,10 @@ def app():
     else:
         month = ['November', 'December']
         year = ['2016', '2017', '2018', '2019', '2020', '2021', '2022']
+        
+    d = st.date_input(
+    "Select a month and a year")
+        
         
     dates = [i+' '+j for j in year for i in month]
     date = st.selectbox("Date", tuple(dates))

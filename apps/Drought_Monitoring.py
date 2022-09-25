@@ -2,6 +2,7 @@ import streamlit as st
 import ee, geemap
 geemap.ee_initialize()
 #     import geemap.foliumap as geemap: don't use it, it messes up with the API initialization
+import time
 import gc
 import math
 import numpy as np

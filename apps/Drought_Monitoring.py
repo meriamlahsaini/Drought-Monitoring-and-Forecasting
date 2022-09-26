@@ -33,7 +33,7 @@ def app():
     args = get_main_args()
     
     st.subheader("Define ROI")
-#     roi_st = time.time()
+    roi_st = time.time()
 #     roi_bar = st.progress(0)
     
     country = st.selectbox("Country", countries, label_visibility="collapsed")
@@ -59,17 +59,10 @@ def app():
             Map.centerObject(roi, 6)
             Map.addLayer(roi, {}, country +'Boundary Map') 
             Map.to_streamlit()
-
-#     roi_et = time.time()
-#     roi_time = roi_et - roi_st
-#     for t in roi_time:
-#         time.sleep(0.1)
-#         roi_bar = st.progress(t)
     
         
     ## INPUT INDICES: VCI, TCI, PCI, ETCI, SMCI
     st.subheader('Compute Input Indices')
-    input_data_bar = st.progress(0)
     season = st.radio('choose season', ('Growing Season', 'Sowing Season'), horizontal=True, label_visibility="collapsed")
     if season == 'Growing Season':
         st.write('The growing season spans January to April from 2016 to 2022. Please select one of these dates')
@@ -81,7 +74,6 @@ def app():
         st.write({'Month': ['November', 'December'],
                   'Year': ['2016', '2017', '2018', '2019', '2020', '2021']})  
 
-    my_bar.progress(10)
     
     args.season = season
     TCI = dataset.GetIndices(args, roi, index='TCI', sum=False).get_scaled_index()
@@ -96,7 +88,6 @@ def app():
     listOfETCIImages = ETCI.toList(ETCI.size())
     listOfSMCIImages = SMCI.toList(SMCI.size())
 
-    my_bar.progress(50)
     if args.season == 'Growing Season':
         month = ['January', 'February', 'March', 'April']
         year = ['2016', '2017', '2018', '2019', '2020', '2021', '2022']
@@ -117,7 +108,6 @@ def app():
     else:
         args.idx =  tuple(dates).index(d.strftime("%B %Y"))
 
-    my_bar.progress(60)
     VCI_image = ee.Image(listOfVCIImages.get(args.idx))
     TCI_image = ee.Image(listOfTCIImages.get(args.idx))
     PCI_image = ee.Image(listOfPCIImages.get(args.idx))
@@ -128,7 +118,6 @@ def app():
             
     ## PCA
     gc.collect()
-    my_bar.progress(100)
     image = ee.Image.cat([VCI_image.clip(roi), 
                           TCI_image.clip(roi),
                           PCI_image.clip(roi),
@@ -213,3 +202,6 @@ def app():
                 Map.addLayer(CMDI_image.clip(roi), args.cdmiVis, 'CMDI,' + d.strftime("%B %Y")) 
                 Map.add_colorbar(args.cdmiVis, label="CMDI", orientation="vertical", layer_name="CMDI, " + d.strftime("%B %Y"))
                 Map.to_streamlit()
+    et = time.time()
+    execution_time = roi_et - roi_st
+    st.success('Execution Time'+str(execution_time), icon="✅")

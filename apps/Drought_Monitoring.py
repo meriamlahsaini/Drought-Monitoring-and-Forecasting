@@ -73,9 +73,9 @@ def app():
      "Compute Input Indices",
      ('Growing Season', 'Sowing Season'), horizontal=True)
     if season == 'Growing Season':
-        st.write(The growing season spans January to April from 2016 to 2022, Please select one of these dates)
+        st.write('The growing season spans January to April from 2016 to 2022, Please select one of these dates')
     else:
-        st.write(The growing season spans Novermber to December from 2016 to 2021, Please select one of these dates)
+        st.write('The growing season spans Novermber to December from 2016 to 2021, Please select one of these dates')
         
     args.season = season
     

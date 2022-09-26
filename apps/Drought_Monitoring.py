@@ -152,17 +152,18 @@ def app():
 #     if display_weights:
 #         st.subheader(f"Contribution coefficient of:\n VCI: {weights[0]} \n TCI: {weights[1]} \n PCI: {weights[2]} \n ETCI: {weights[3]} \n ETCI: {weights[4]}")
                     
-#     input_indcies = (
-#         "CMDI",
-#         "ETCI",
-#         "PCI",
-#         "SMCI",
-#         "TCI",
-#         "VCI"
-#     )
-    
+    input_indcies = (
+        "CMDI",
+        "ETCI",
+        "PCI",
+        "SMCI",
+        "TCI",
+        "VCI"
+    )
+    input_index = st.radio('choose index', input_indcies, horizontal=True, label_visibility="collapsed")
 #     input_index = st.selectbox("Input Indices", input_indcies)
-#     display_input_index = st.button('Display '+input_index)
+    display_input_index = st.button('Display '+ input_index)
+
     
 #     # compute CMDI
 #     CMDI_image = CMDI.compute_CMDI(VCI_image, TCI_image, PCI_image, ETCI_image, SMCI_image, weights, roi)

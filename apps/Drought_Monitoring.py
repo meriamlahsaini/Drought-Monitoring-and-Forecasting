@@ -5,7 +5,7 @@ geemap.ee_initialize()
 import time
 import gc
 import math
-import datetime
+import datetime as dt
 import numpy as np
 from drought_monitoring import dataset, pca, CMDI
 # from dataset import GetIndices
@@ -92,14 +92,19 @@ def app():
     if args.season == 'Growing Season':
         d = st.date_input(
             "Select a month and a year",
-            value=datetime.date(2016, 1, 1), min_value=datetime.date(2016, 1, 1), max_value=datetime.date(2022, 4, 30), label_visibility="collapsed")
-        st.write(d)
+            value=dt.date(2016, 1, 1), min_value=dt.date(2016, 1, 1), max_value=dt.date(2022, 4, 30), label_visibility="collapsed")
+        st.write(d.dt.to_period('M'))
+        
+        
+        
+        
+        
         month = ['January', 'February', 'March', 'April']
         year = ['2016', '2017', '2018', '2019', '2020', '2021', '2022']
     else:
         d = st.date_input(
             "Select a month and a year",
-            value=datetime.date(2016, 11, 1), min_value=datetime.date(2016, 11, 1), max_value=datetime.date(2022, 12, 31), label_visibility="collapsed")
+            value=dt.date(2016, 11, 1), min_value=dt.date(2016, 11, 1), max_value=dt.date(2022, 12, 31), label_visibility="collapsed")
         
         month = ['November', 'December']
         year = ['2016', '2017', '2018', '2019', '2020', '2021', '2022']

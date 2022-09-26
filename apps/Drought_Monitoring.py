@@ -109,10 +109,9 @@ def app():
             value=dt.date(2016, 11, 1), min_value=dt.date(2016, 11, 1), max_value=dt.date(2022, 12, 31), label_visibility="collapsed")
         
     dates = [i+' '+j for j in year for i in month]
-    if tuple(dates).index(d.strftime("%B %Y")) not in dates:
+    if d.strftime("%B %Y") not in dates:
         st.write(dates)
-        st.write(str(d.strftime("%B %Y")))
-#         st.warning('Please select one of the recommended dates', icon="⚠️")
+        st.warning('Please select one of the recommended dates', icon="⚠️")
     else:
         args.idx =  tuple(dates).index(d.strftime("%B %Y"))
 

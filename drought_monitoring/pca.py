@@ -1,8 +1,6 @@
 import ee
-import streamlit as st
 
 # This helper function returns a list of new band names.
-@st.cache
 def getNewBandNames(prefix, bandNames):
   seq = ee.List.sequence(1, len(bandNames))
   return seq.map(lambda b: ee.String(prefix).cat(ee.Number(b).int().format()))

@@ -96,25 +96,23 @@ def app():
     
     
     if args.season == 'Growing Season':
+        month = ['January', 'February', 'March', 'April']
+        year = ['2016', '2017', '2018', '2019', '2020', '2021', '2022']
         d = st.date_input(
             "Select a month and a year",
             value=dt.date(2016, 1, 1), min_value=dt.date(2016, 1, 1), max_value=dt.date(2022, 4, 30), label_visibility="collapsed")
-        
-        
-        month = ['January', 'February', 'March', 'April']
-        year = ['2016', '2017', '2018', '2019', '2020', '2021', '2022']
     else:
+        month = ['November', 'December']
+        year = ['2016', '2017', '2018', '2019', '2020', '2021', '2022']
         d = st.date_input(
             "Select a month and a year",
             value=dt.date(2016, 11, 1), min_value=dt.date(2016, 11, 1), max_value=dt.date(2022, 12, 31), label_visibility="collapsed")
         
-        month = ['November', 'December']
-        year = ['2016', '2017', '2018', '2019', '2020', '2021', '2022']
-        
     dates = [i+' '+j for j in year for i in month]
-    args.idx =  tuple(dates).index(d.strftime("%B %Y"))
-    if args.idx not in dates:
+    if tuple(dates).index(d.strftime("%B %Y")) not in dates:
         st.warning('Please select one of the recommended dates', icon="⚠️")
+    else:
+        args.idx =  tuple(dates).index(d.strftime("%B %Y"))
 
     
 #     dates = [i+' '+j for j in year for i in month]

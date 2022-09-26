@@ -65,37 +65,37 @@ def app():
 #     for t in roi_time:
 #         time.sleep(0.1)
 #         roi_bar = st.progress(t)
-
-        
+    
         
     ## INPUT INDICES: VCI, TCI, PCI, ETCI, SMCI
     st.subheader('Compute Input Indices')
-    
-    season = st.radio('choose season', ('Growing Season', 'Sowing Season'), horizontal=True, label_visibility="collapsed")
-    if season == 'Growing Season':
-        st.write('The growing season spans January to April from 2016 to 2022. Please select one of these dates')
-        st.write({'Month': ['January', 'February', 'March', 'April'],
-                  'Year': ['2016', '2017', '2018', '2019', '2020', '2021', '2022']})       
+    input_data_bar = st.progress(time.time())
+    with my_bar.progress(time.time()):
+        season = st.radio('choose season', ('Growing Season', 'Sowing Season'), horizontal=True, label_visibility="collapsed")
+        if season == 'Growing Season':
+            st.write('The growing season spans January to April from 2016 to 2022. Please select one of these dates')
+            st.write({'Month': ['January', 'February', 'March', 'April'],
+                      'Year': ['2016', '2017', '2018', '2019', '2020', '2021', '2022']})       
 
-    else:
-        st.write('The sowing season spans Novermber to December from 2016 to 2021. Please select one of these dates')
-        st.write({'Month': ['November', 'December'],
-                  'Year': ['2016', '2017', '2018', '2019', '2020', '2021']})  
+        else:
+            st.write('The sowing season spans Novermber to December from 2016 to 2021. Please select one of these dates')
+            st.write({'Month': ['November', 'December'],
+                      'Year': ['2016', '2017', '2018', '2019', '2020', '2021']})  
     
     
-    args.season = season
-    TCI = dataset.GetIndices(args, roi, index='TCI', sum=False).get_scaled_index()
-    VCI = dataset.GetIndices(args, roi, index='VCI', sum=False).get_scaled_index()
-    ETCI = dataset.GetIndices(args, roi, index='ETCI', sum=True).get_scaled_index()
-    PCI  = dataset.GetIndices(args, roi, index='PCI', sum=True).get_scaled_index()
-    SMCI = dataset.GetIndices(args, roi, index='SMCI', sum=False).get_scaled_index()
+        args.season = season
+        TCI = dataset.GetIndices(args, roi, index='TCI', sum=False).get_scaled_index()
+        VCI = dataset.GetIndices(args, roi, index='VCI', sum=False).get_scaled_index()
+        ETCI = dataset.GetIndices(args, roi, index='ETCI', sum=True).get_scaled_index()
+        PCI  = dataset.GetIndices(args, roi, index='PCI', sum=True).get_scaled_index()
+        SMCI = dataset.GetIndices(args, roi, index='SMCI', sum=False).get_scaled_index()
 
-    listOfVCIImages = VCI.toList(VCI.size())
-    listOfTCIImages = TCI.toList(TCI.size())
-    listOfPCIImages = PCI.toList(PCI.size())
-    listOfETCIImages = ETCI.toList(ETCI.size())
-    listOfSMCIImages = SMCI.toList(SMCI.size())
-    
+        listOfVCIImages = VCI.toList(VCI.size())
+        listOfTCIImages = TCI.toList(TCI.size())
+        listOfPCIImages = PCI.toList(PCI.size())
+        listOfETCIImages = ETCI.toList(ETCI.size())
+        listOfSMCIImages = SMCI.toList(SMCI.size())
+
     
     if args.season == 'Growing Season':
         month = ['January', 'February', 'March', 'April']

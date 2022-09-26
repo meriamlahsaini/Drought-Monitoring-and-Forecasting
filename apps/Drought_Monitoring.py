@@ -100,7 +100,11 @@ def app():
         year = ['2016', '2017', '2018', '2019', '2020', '2021', '2022']
         d = st.date_input(
             "Select a month and a year",
-            value=dt.date(2016, 1, 1), min_value=dt.date(2016, 1, 1), max_value=dt.date(2022, 4, 30), label_visibility="collapsed")
+            value=dt.date(2016, 1, 1), 
+                         min_value=dt.date(2016, 1, 1),
+                         max_value=dt.date(2022, 4, 30),
+                         on_change=st.warning('Please select one of the recommended dates', icon="⚠️"),
+                         label_visibility="collapsed")
     else:
         month = ['November', 'December']
         year = ['2016', '2017', '2018', '2019', '2020', '2021', '2022']

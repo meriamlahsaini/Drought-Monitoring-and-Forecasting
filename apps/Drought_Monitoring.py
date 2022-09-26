@@ -36,7 +36,7 @@ def app():
 #     roi_st = time.time()
 #     roi_bar = st.progress(0)
     
-    country = st.selectbox("Country", countries)
+    country = st.selectbox("Country", countries, label_visibility="collapsed")
     if country == "Afghanistan":
         roi = ee.FeatureCollection(args.afghanistan_dir)
     elif country == "Burkina Faso":

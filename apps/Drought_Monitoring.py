@@ -93,7 +93,7 @@ def app():
         d = st.date_input(
             "Select a month and a year",
             value=dt.date(2016, 1, 1), min_value=dt.date(2016, 1, 1), max_value=dt.date(2022, 4, 30), label_visibility="collapsed")
-        st.write(d.strftime("%B%Y"))
+        st.write(d.strftime("%B %Y"))
         
         
         

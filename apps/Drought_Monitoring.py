@@ -73,8 +73,10 @@ def app():
     season = st.radio('choose season', ('Growing Season', 'Sowing Season'), horizontal=True, label_visibility="collapsed")
     if season == 'Growing Season':
         st.write('The growing season spans January to April from 2016 to 2022, Please select one of these dates')
-        st.write((pd.DataFrame({'Month': ['January', 'February', 'March', 'April']}), pd.DataFrame({'Year': ['2016', '2017', '2018', '2019', '2020', '2021', '2022']}))
-        st.write(pd.DataFrame({'Year': ['2016', '2017', '2018', '2019', '2020', '2021', '2022']}))
+        st.write((pd.DataFrame({'Month': ['January', 'February', 'March', 'April']}),
+                  pd.DataFrame({'Year': ['2016', '2017', '2018', '2019', '2020', '2021', '2022']})
+                              ))
+#         st.write(pd.DataFrame({'Year': ['2016', '2017', '2018', '2019', '2020', '2021', '2022']}))
        
         
     else:

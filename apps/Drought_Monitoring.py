@@ -70,45 +70,45 @@ def app():
         
     ## INPUT INDICES: VCI, TCI, PCI, ETCI, SMCI
     st.subheader('Compute Input Indices')
-    with st.spinner('Wait for it...'):
     
-        season = st.radio('choose season', ('Growing Season', 'Sowing Season'), horizontal=True, label_visibility="collapsed")
-        if season == 'Growing Season':
-            st.write('The growing season spans January to April from 2016 to 2022. Please select one of these dates')
-            st.write({'Month': ['January', 'February', 'March', 'April'],
-                      'Year': ['2016', '2017', '2018', '2019', '2020', '2021', '2022']})       
+    season = st.radio('choose season', ('Growing Season', 'Sowing Season'), horizontal=True, label_visibility="collapsed")
+    if season == 'Growing Season':
+        st.write('The growing season spans January to April from 2016 to 2022. Please select one of these dates')
+        st.write({'Month': ['January', 'February', 'March', 'April'],
+                  'Year': ['2016', '2017', '2018', '2019', '2020', '2021', '2022']})       
 
-        else:
-            st.write('The sowing season spans Novermber to December from 2016 to 2021. Please select one of these dates')
-            st.write({'Month': ['November', 'December'],
-                      'Year': ['2016', '2017', '2018', '2019', '2020', '2021']})  
-        
-    args.season = season
-    TCI = dataset.GetIndices(args, roi, index='TCI', sum=False).get_scaled_index()
-    VCI = dataset.GetIndices(args, roi, index='VCI', sum=False).get_scaled_index()
-    ETCI = dataset.GetIndices(args, roi, index='ETCI', sum=True).get_scaled_index()
-    PCI  = dataset.GetIndices(args, roi, index='PCI', sum=True).get_scaled_index()
-    SMCI = dataset.GetIndices(args, roi, index='SMCI', sum=False).get_scaled_index()
-    
-    listOfVCIImages = VCI.toList(VCI.size())
-    listOfTCIImages = TCI.toList(TCI.size())
-    listOfPCIImages = PCI.toList(PCI.size())
-    listOfETCIImages = ETCI.toList(ETCI.size())
-    listOfSMCIImages = SMCI.toList(SMCI.size())
-    
-    
-    if args.season == 'Growing Season':
-        month = ['January', 'February', 'March', 'April']
-        year = ['2016', '2017', '2018', '2019', '2020', '2021', '2022']
-        d = st.date_input(
-            "Select a month and a year",
-            value=dt.date(2016, 1, 1), min_value=dt.date(2016, 1, 1),max_value=dt.date(2022, 4, 30), label_visibility="collapsed")
     else:
-        month = ['November', 'December']
-        year = ['2016', '2017', '2018', '2019', '2020', '2021', '2022']
-        d = st.date_input(
-            "Select a month and a year",
-            value=dt.date(2016, 11, 1), min_value=dt.date(2016, 11, 1), max_value=dt.date(2022, 12, 31), label_visibility="collapsed")
+        st.write('The sowing season spans Novermber to December from 2016 to 2021. Please select one of these dates')
+        st.write({'Month': ['November', 'December'],
+                  'Year': ['2016', '2017', '2018', '2019', '2020', '2021']})  
+    
+    with st.spinner('Wait for it...'):
+        args.season = season
+        TCI = dataset.GetIndices(args, roi, index='TCI', sum=False).get_scaled_index()
+        VCI = dataset.GetIndices(args, roi, index='VCI', sum=False).get_scaled_index()
+        ETCI = dataset.GetIndices(args, roi, index='ETCI', sum=True).get_scaled_index()
+        PCI  = dataset.GetIndices(args, roi, index='PCI', sum=True).get_scaled_index()
+        SMCI = dataset.GetIndices(args, roi, index='SMCI', sum=False).get_scaled_index()
+
+        listOfVCIImages = VCI.toList(VCI.size())
+        listOfTCIImages = TCI.toList(TCI.size())
+        listOfPCIImages = PCI.toList(PCI.size())
+        listOfETCIImages = ETCI.toList(ETCI.size())
+        listOfSMCIImages = SMCI.toList(SMCI.size())
+    
+    with st.spinner('Wait for it...'):
+        if args.season == 'Growing Season':
+            month = ['January', 'February', 'March', 'April']
+            year = ['2016', '2017', '2018', '2019', '2020', '2021', '2022']
+            d = st.date_input(
+                "Select a month and a year",
+                value=dt.date(2016, 1, 1), min_value=dt.date(2016, 1, 1),max_value=dt.date(2022, 4, 30), label_visibility="collapsed")
+        else:
+            month = ['November', 'December']
+            year = ['2016', '2017', '2018', '2019', '2020', '2021', '2022']
+            d = st.date_input(
+                "Select a month and a year",
+                value=dt.date(2016, 11, 1), min_value=dt.date(2016, 11, 1), max_value=dt.date(2022, 12, 31), label_visibility="collapsed")
         
     dates = [i+' '+j for j in year for i in month]
     if d.strftime("%B %Y") not in dates:

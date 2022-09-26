@@ -21,7 +21,7 @@ def get_main_args():
     arg("--sm_dir", type=str, default="NASA/GLDAS/V021/NOAH/G025/T3H", help="SM Image Collection")
     arg("--years", type=list, default=[2016+i for i in range(7)], help="Study Period Range-years")
     arg("--months", type=list, default=[1, 2, 3, 4], help="Study Period Range-months")
-    arg("--season", type=str, default='Growing', help="Study Period Season")
+    arg("--season", type=str, default='Growing Season', help="Study Period Season")
     arg("--visualize", type=bool, default=True, help="Option to Display Maps")
     arg("--idx", type=int, default=20, help="Index of Image to Display")
     arg("--vciVis", type=dict, default={'min':0.0, 'max': 1.0,

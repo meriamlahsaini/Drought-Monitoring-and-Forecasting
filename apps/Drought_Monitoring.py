@@ -111,6 +111,7 @@ def app():
     dates = [i+' '+j for j in year for i in month]
     if tuple(dates).index(d.strftime("%B %Y")) not in dates:
         st.write(dates)
+        st.write(d.strftime("%B %Y"))
 #         st.warning('Please select one of the recommended dates', icon="⚠️")
     else:
         args.idx =  tuple(dates).index(d.strftime("%B %Y"))

@@ -147,10 +147,6 @@ def app():
             'Contribution Weights': weights,
         }))
 
-
-
-#     if display_weights:
-#         st.subheader(f"Contribution coefficient of:\n VCI: {weights[0]} \n TCI: {weights[1]} \n PCI: {weights[2]} \n ETCI: {weights[3]} \n ETCI: {weights[4]}")
                     
     input_indcies = (
         "CMDI",

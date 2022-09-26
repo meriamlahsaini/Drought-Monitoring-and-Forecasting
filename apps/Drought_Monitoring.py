@@ -71,7 +71,8 @@ def app():
     
     season = st.radio('choose season', ('Growing Season', 'Sowing Season'), horizontal=True, label_visibility="collapsed")
     if season == 'Growing Season':
-        st.write('The growing season spans January to April from 2016 to 2022, Please select one of these dates')
+        st.write('The growing season spans January to April from 2016 to 2022, Please select one of these dates:
+                 ['January', 'February', 'March', 'April'], ['2016', '2017', '2018', '2019', '2020', '2021', '2022']')
     else:
         st.write('The growing season spans Novermber to December from 2016 to 2021, Please select one of these dates')
         
@@ -107,6 +108,7 @@ def app():
         
     dates = [i+' '+j for j in year for i in month]
     args.idx =  tuple(dates).index(d.strftime("%B %Y"))
+#     st.warning('This is a warning', icon="⚠️")
     st.write(args.idx)
     
 #     dates = [i+' '+j for j in year for i in month]

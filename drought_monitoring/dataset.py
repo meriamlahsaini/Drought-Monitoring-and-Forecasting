@@ -61,7 +61,7 @@ class GetIndices():
 
   
   def seasonal_filter (self): 
-    if self.args.season == 'sowing':
+    if self.args.season == 'Sowing Season':
       return self.raw_data.filter(ee.Filter.calendarRange(2016, 2021, 'year')) \
                           .filter(ee.Filter.calendarRange(11, 12, 'month'))
     else:

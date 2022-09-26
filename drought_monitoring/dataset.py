@@ -69,7 +69,7 @@ class GetIndices():
                           .filter(ee.Filter.calendarRange(1, 4, 'month'))
   
   ## Map over the years and create a monthly aggregates (sum or mean)
-  @st.cache
+  
   def monthly_Data (self):
     monthly_data = []
     for year in self.args.years:
@@ -102,7 +102,7 @@ class GetIndices():
       max.append(Monthly_max)
     return ee.ImageCollection.fromImages(min), ee.ImageCollection.fromImages(max)
    
-  @st.cache
+  
   def Compute_Index (self, image):
     # TCI = (max - avg) / (max - min)
     # VCI, PCI, ETCI = (avg - min) / (max - min)
@@ -116,7 +116,7 @@ class GetIndices():
                             'min': image.select('min'),
                             'max': image.select('max')
                             }).rename(self.index) 
-  @st.cache
+  
   def get_scaled_index(self):
     Index_img = []
     for year in self.args.years:

@@ -110,52 +110,47 @@ def app():
         
     dates = [i+' '+j for j in year for i in month]
     if d.strftime("%B %Y") not in dates:
-        st.write(dates)
         st.warning('Please select one of the recommended dates', icon="⚠️")
+        st.write(dates)
     else:
         args.idx =  tuple(dates).index(d.strftime("%B %Y"))
 
-    
-#     dates = [i+' '+j for j in year for i in month]
-#     date = st.selectbox("Date", tuple(dates))
-    
 
-#     args.idx =  tuple(dates).index(date)
-#     VCI_image = ee.Image(listOfVCIImages.get(args.idx))
-#     TCI_image = ee.Image(listOfTCIImages.get(args.idx))
-#     PCI_image = ee.Image(listOfPCIImages.get(args.idx))
-#     ETCI_image = ee.Image(listOfETCIImages.get(args.idx))
-#     SMCI_image = ee.Image(listOfSMCIImages.get(args.idx))
+    VCI_image = ee.Image(listOfVCIImages.get(args.idx))
+    TCI_image = ee.Image(listOfTCIImages.get(args.idx))
+    PCI_image = ee.Image(listOfPCIImages.get(args.idx))
+    ETCI_image = ee.Image(listOfETCIImages.get(args.idx))
+    SMCI_image = ee.Image(listOfSMCIImages.get(args.idx))
    
 
             
-#     ## PCA
-#     st.subheader('Compute CMDI')
+    ## PCA
+    st.subheader('Compute CMDI')
     
-#     gc.collect()
+    gc.collect()
     
-#     image = ee.Image.cat([VCI_image.clip(roi), 
-#                           TCI_image.clip(roi),
-#                           PCI_image.clip(roi),
-#                           ETCI_image.clip(roi),
-#                           SMCI_image.clip(roi)]) 
+    image = ee.Image.cat([VCI_image.clip(roi), 
+                          TCI_image.clip(roi),
+                          PCI_image.clip(roi),
+                          ETCI_image.clip(roi),
+                          SMCI_image.clip(roi)]) 
     
-#     # Get the PCs at the specified scale and in the specified region
-#     pcImage, eigenVectors = pca.getPrincipalComponents(image, args.scale, roi, args.bandNames)    
-#     eigenVectors_np = np.array(eigenVectors.getInfo())[0]
-#     contrib_coeff = eigenVectors_np**2
-#     weights = [math.ceil(i*100)/100 for i in contrib_coeff]
-#     display_weights = st.button('Weights')
-
-# st.write(pd.DataFrame({
-#     'first column': [1, 2, 3, 4],
-#     'second column': [10, 20, 30, 40],
-# }))
+    # Get the PCs at the specified scale and in the specified region
+    pcImage, eigenVectors = pca.getPrincipalComponents(image, args.scale, roi, args.bandNames)    
+    eigenVectors_np = np.array(eigenVectors.getInfo())[0]
+    contrib_coeff = eigenVectors_np**2
+    weights = [math.ceil(i*100)/100 for i in contrib_coeff]
+    display_weights = st.button('Weights')
+    if display_weights:
+        st.write(pd.DataFrame({
+            'Input Indices': ['VCI', 'TCI', 'PCI', 'ETCI', 'ETCI'],
+            'Contribution Weights': weights,
+        }))
 
 
 
 #     if display_weights:
-#         st.subheader(f"Contribution coefficient of:\n VCI: {weights[0]} \n TCI: {weights[1]} \n PCI: {weights[2]} \n ETCI: {weights[3]} \n SMCI: {weights[4]}")
+#         st.subheader(f"Contribution coefficient of:\n VCI: {weights[0]} \n TCI: {weights[1]} \n PCI: {weights[2]} \n ETCI: {weights[3]} \n ETCI: {weights[4]}")
                     
 #     input_indcies = (
 #         "CMDI",

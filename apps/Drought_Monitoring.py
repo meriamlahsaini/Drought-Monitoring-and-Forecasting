@@ -74,14 +74,12 @@ def app():
     if season == 'Growing Season':
         st.write('The growing season spans January to April from 2016 to 2022, Please select one of these dates')
         st.write({'Month': ['January', 'February', 'March', 'April'],
-                  'Year': ['2016', '2017', '2018', '2019', '2020', '2021', '2022']})
-#                  pd.DataFrame({'Year': ['2016', '2017', '2018', '2019', '2020', '2021', '2022']})
-#                               )
-#         st.write(pd.DataFrame({'Year': ['2016', '2017', '2018', '2019', '2020', '2021', '2022']}))
-       
+                  'Year': ['2016', '2017', '2018', '2019', '2020', '2021', '2022']})       
         
     else:
         st.write('The growing season spans Novermber to December from 2016 to 2021, Please select one of these dates')
+        st.write({'Month': ['November', 'December'],
+                  'Year': ['2016', '2017', '2018', '2019', '2020', '2021']})  
         
     args.season = season
     TCI = dataset.GetIndices(args, roi, index='TCI', sum=False).get_scaled_index()

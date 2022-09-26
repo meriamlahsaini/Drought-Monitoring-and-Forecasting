@@ -54,10 +54,11 @@ def app():
     
     display_boundary_map = st.button('Display Boundary Map')
     if display_boundary_map: 
-        Map = geemap.Map(plugin_Draw=True, Draw_export=False)
-        Map.centerObject(roi, 6)
-        Map.addLayer(roi, {}, country +'Boundary Map') 
-        Map.to_streamlit()
+        with st.spinner('Wait for it...'):
+            Map = geemap.Map(plugin_Draw=True, Draw_export=False)
+            Map.centerObject(roi, 6)
+            Map.addLayer(roi, {}, country +'Boundary Map') 
+            Map.to_streamlit()
 
 #     roi_et = time.time()
 #     roi_time = roi_et - roi_st

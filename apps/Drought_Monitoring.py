@@ -6,6 +6,7 @@ import time
 import gc
 import math
 import datetime as dt
+import pandas as pd
 import numpy as np
 from drought_monitoring import dataset, pca, CMDI
 # from dataset import GetIndices

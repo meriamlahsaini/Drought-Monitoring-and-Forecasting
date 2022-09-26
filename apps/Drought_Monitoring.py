@@ -143,7 +143,7 @@ def app():
     if display_weights:
         st.write(pd.DataFrame({
             'Input Indices': ['VCI', 'TCI', 'PCI', 'ETCI', 'ETCI'],
-            'Contribution Weights': weights.map(lambda x: "%.2f" % x), 
+            'Contribution Weights': list(map(lambda x: "%.2f" % x, weights)), 
         }))
 
                     

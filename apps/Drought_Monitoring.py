@@ -92,14 +92,14 @@ def app():
     if args.season == 'Growing Season':
         d = st.date_input(
             "Select a month and a year",
-            value=datetime.date(2016, 1, 1), min_value=datetime.date(2016, 1, 1), max_value=datetime.date(2022, 4, 30))
-        st.write(value)
+            value=datetime.date(2016, 1, 1), min_value=datetime.date(2016, 1, 1), max_value=datetime.date(2022, 4, 30), label_visibility="collapsed")
+        st.write(d)
         month = ['January', 'February', 'March', 'April']
         year = ['2016', '2017', '2018', '2019', '2020', '2021', '2022']
     else:
         d = st.date_input(
             "Select a month and a year",
-            value=datetime.date(2016, 11, 1), min_value=datetime.date(2016, 11, 1), max_value=datetime.date(2022, 12, 31))
+            value=datetime.date(2016, 11, 1), min_value=datetime.date(2016, 11, 1), max_value=datetime.date(2022, 12, 31), label_visibility="collapsed")
         
         month = ['November', 'December']
         year = ['2016', '2017', '2018', '2019', '2020', '2021', '2022']

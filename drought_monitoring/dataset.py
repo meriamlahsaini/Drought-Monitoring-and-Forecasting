@@ -69,7 +69,6 @@ class GetIndices():
                           .filter(ee.Filter.calendarRange(1, 4, 'month'))
   
   ## Map over the years and create a monthly aggregates (sum or mean)
-  
   def monthly_Data (self):
     monthly_data = []
     for year in self.args.years:
@@ -87,7 +86,6 @@ class GetIndices():
 
 
   ## compute Min and Max for each month across all years
-  @st.cache
   def monthly_Min_Max(self):
     min, max = [], []
     for month in self.args.months:

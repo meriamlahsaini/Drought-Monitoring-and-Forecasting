@@ -67,13 +67,16 @@ def app():
         
         
     ## INPUT INDICES: VCI, TCI, PCI, ETCI, SMCI
-#     st.subheader('Compute Input Indices')
+    st.subheader('Compute Input Indices')
     
     season = st.radio(
      "Compute Input Indices",
-     ('Growing', 'Sowing'),
-     horizontal=True)
-    
+     ('Growing Season', 'Sowing Season'), horizontal=True)
+    if season == 'Growing Season':
+        st.write(The growing season spans January to April from 2016 to 2022, Please select one of these dates)
+    else:
+        st.write(The growing season spans Novermber to December from 2016 to 2021, Please select one of these dates)
+        
     args.season = season
     
     TCI = dataset.GetIndices(args, roi, index='TCI', sum=False).get_scaled_index()
@@ -89,7 +92,7 @@ def app():
     listOfSMCIImages = SMCI.toList(SMCI.size())
     
     
-    if args.season == 'Growing':
+    if args.season == 'Growing Season':
         d = st.date_input(
             "Select a month and a year",
             value=datetime.date(2016, 1, 1), min_value=datetime.date(2016, 1, 1), max_value=datetime.date(2022, 4, 30))
@@ -138,6 +141,14 @@ def app():
 #     contrib_coeff = eigenVectors_np**2
 #     weights = [math.ceil(i*100)/100 for i in contrib_coeff]
 #     display_weights = st.button('Weights')
+
+# st.write(pd.DataFrame({
+#     'first column': [1, 2, 3, 4],
+#     'second column': [10, 20, 30, 40],
+# }))
+
+
+
 #     if display_weights:
 #         st.subheader(f"Contribution coefficient of:\n VCI: {weights[0]} \n TCI: {weights[1]} \n PCI: {weights[2]} \n ETCI: {weights[3]} \n SMCI: {weights[4]}")
                     

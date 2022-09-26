@@ -1,5 +1,6 @@
+import streamlit as st
 
-
+@st.cache
 def compute_CMDI(VCI, TCI, PCI, ETCI, SMCI, weights, roi):
     wVCI = VCI.clip(roi).multiply(weights[0])
     wTCI = TCI.clip(roi).multiply(weights[1]) 

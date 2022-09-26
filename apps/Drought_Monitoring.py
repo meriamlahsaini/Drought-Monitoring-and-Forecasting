@@ -133,7 +133,7 @@ def app():
                           ETCI_image.clip(roi),
                           SMCI_image.clip(roi)]) 
     
-    st.subheader('Compute the contribution weights of input indices')
+    st.subheader('Compute CMDI')
     # Get the PCs at the specified scale and in the specified region
     pcImage, eigenVectors = pca.getPrincipalComponents(image, args.scale, roi, args.bandNames)    
     eigenVectors_np = np.array(eigenVectors.getInfo())[0]
@@ -143,7 +143,7 @@ def app():
     if display_weights:
         st.write(pd.DataFrame({
             'Input Indices': ['VCI', 'TCI', 'PCI', 'ETCI', 'ETCI'],
-            'Contribution Weights': weights,
+            'Contribution Weights': weights.map(lambda x: "%.2f" % x), 
         }))
 
                     
@@ -161,7 +161,6 @@ def app():
 
     
     # compute CMDI
-    st.subheader('Compute CMDI')
     CMDI_image = CMDI.compute_CMDI(VCI_image, TCI_image, PCI_image, ETCI_image, SMCI_image, weights, roi)
     
     if display_input_index:

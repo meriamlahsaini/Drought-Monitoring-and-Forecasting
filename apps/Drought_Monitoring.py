@@ -93,7 +93,7 @@ def app():
         d = st.date_input(
             "Select a month and a year",
             value=datetime.date(2016, 1, 1), min_value=datetime.date(2016, 1, 1), max_value=datetime.date(2022, 4, 30))
-            st.write(value)
+            st.subheader(value)
         month = ['January', 'February', 'March', 'April']
         year = ['2016', '2017', '2018', '2019', '2020', '2021', '2022']
     else:

@@ -167,33 +167,33 @@ def app():
         Map = geemap.Map(zoom = 6, plugin_Draw=True, Draw_export=False)
         Map.centerObject(roi, 6)
         if input_index == 'VCI':
-            Map.addLayer(VCI_image.clip(roi), args.vciVis, 'VCI, '+date) 
+            Map.addLayer(VCI_image.clip(roi), args.vciVis, 'VCI, ' + d.strftime("%B %Y")) 
             Map.add_colorbar(args.vciVis, label="VCI", orientation="vertical", layer_name="VCI, " + d.strftime("%B %Y"))
             Map.to_streamlit()
     
         elif input_index == 'TCI':
-            Map.addLayer(TCI_image.clip(roi), args.tciVis, 'TCI, '+date) 
+            Map.addLayer(TCI_image.clip(roi), args.tciVis, 'TCI, ' + d.strftime("%B %Y")) 
             Map.add_colorbar(args.tciVis, label="TCI", orientation="vertical", layer_name="TCI, " + d.strftime("%B %Y"))
             Map.to_streamlit()
 
         elif input_index == 'PCI':
-            Map.addLayer(PCI_image.clip(roi), args.pciVis, 'PCI, '+date) 
+            Map.addLayer(PCI_image.clip(roi), args.pciVis, 'PCI, ' + d.strftime("%B %Y")) 
             Map.add_colorbar(args.vciVis, label="PCI", orientation="vertical", layer_name="PCI, " + d.strftime("%B %Y"))
             Map.to_streamlit()
     
         elif input_index == 'ETCI':
             Map = geemap.Map(zoom = 6, plugin_Draw=True, Draw_export=False)
             Map.centerObject(roi, 6)
-            Map.addLayer(ETCI_image.clip(roi), args.etciVis, 'ETCI,'+date) 
+            Map.addLayer(ETCI_image.clip(roi), args.etciVis, 'ETCI,' + d.strftime("%B %Y")) 
             Map.add_colorbar(args.etciVis, label="ETCI", orientation="vertical", layer_name="ETCI, " + d.strftime("%B %Y"))
             Map.to_streamlit()
             
         elif input_index == 'SMCI':
-            Map.addLayer(SMCI_image.clip(roi), args.smciVis, 'SMCI, '+date) 
+            Map.addLayer(SMCI_image.clip(roi), args.smciVis, 'SMCI, ' + d.strftime("%B %Y")) 
             Map.add_colorbar(args.smciVis, label="SMCI", orientation="vertical", layer_name="SMCI, " + d.strftime("%B %Y"))
             Map.to_streamlit()
         
         elif input_index == 'CMDI':
-            Map.addLayer(CMDI_image.clip(roi), args.cdmiVis, 'CMDI,'+date) 
+            Map.addLayer(CMDI_image.clip(roi), args.cdmiVis, 'CMDI,' + d.strftime("%B %Y")) 
             Map.add_colorbar(args.cdmiVis, label="CMDI", orientation="vertical", layer_name="CMDI, " + d.strftime("%B %Y"))
             Map.to_streamlit()

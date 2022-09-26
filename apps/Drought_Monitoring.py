@@ -69,7 +69,7 @@ def app():
     ## INPUT INDICES: VCI, TCI, PCI, ETCI, SMCI
     st.subheader('Compute Input Indices')
     
-    season = st.radio(label_visibility="collapsed", ('Growing Season', 'Sowing Season'), horizontal=True)
+    season = st.radio('choose season', ('Growing Season', 'Sowing Season'), horizontal=True, label_visibility="collapsed")
     if season == 'Growing Season':
         st.write('The growing season spans January to April from 2016 to 2022, Please select one of these dates')
     else:

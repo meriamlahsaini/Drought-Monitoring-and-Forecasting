@@ -83,120 +83,120 @@ def app():
     args.season = season
     st.write(args.season)
     
-    TCI = dataset.GetIndices(args, roi, index='TCI', sum=False).get_scaled_index()
-    VCI = dataset.GetIndices(args, roi, index='VCI', sum=False).get_scaled_index()
-    ETCI = dataset.GetIndices(args, roi, index='ETCI', sum=True).get_scaled_index()
-    PCI  = dataset.GetIndices(args, roi, index='PCI', sum=True).get_scaled_index()
-    SMCI = dataset.GetIndices(args, roi, index='SMCI', sum=False).get_scaled_index()
+#     TCI = dataset.GetIndices(args, roi, index='TCI', sum=False).get_scaled_index()
+#     VCI = dataset.GetIndices(args, roi, index='VCI', sum=False).get_scaled_index()
+#     ETCI = dataset.GetIndices(args, roi, index='ETCI', sum=True).get_scaled_index()
+#     PCI  = dataset.GetIndices(args, roi, index='PCI', sum=True).get_scaled_index()
+#     SMCI = dataset.GetIndices(args, roi, index='SMCI', sum=False).get_scaled_index()
     
-    listOfVCIImages = VCI.toList(VCI.size())
-    listOfTCIImages = TCI.toList(TCI.size())
-    listOfPCIImages = PCI.toList(PCI.size())
-    listOfETCIImages = ETCI.toList(ETCI.size())
-    listOfSMCIImages = SMCI.toList(SMCI.size())
+#     listOfVCIImages = VCI.toList(VCI.size())
+#     listOfTCIImages = TCI.toList(TCI.size())
+#     listOfPCIImages = PCI.toList(PCI.size())
+#     listOfETCIImages = ETCI.toList(ETCI.size())
+#     listOfSMCIImages = SMCI.toList(SMCI.size())
 
         
-    dates = [i+' '+j for j in year for i in month]
-    if d.strftime("%B %Y") not in dates:
-        st.warning('Please select one of the recommended dates', icon="⚠️")
-        st.write(dates)
-    else:
-        args.idx =  tuple(dates).index(d.strftime("%B %Y"))
+#     dates = [i+' '+j for j in year for i in month]
+#     if d.strftime("%B %Y") not in dates:
+#         st.warning('Please select one of the recommended dates', icon="⚠️")
+#         st.write(dates)
+#     else:
+#         args.idx =  tuple(dates).index(d.strftime("%B %Y"))
 
 
         
-    ## PCA
-    st.subheader('Compute CMDI')
-    VCI_image = ee.Image(listOfVCIImages.get(args.idx))
-    TCI_image = ee.Image(listOfTCIImages.get(args.idx))
-    PCI_image = ee.Image(listOfPCIImages.get(args.idx))
-    ETCI_image = ee.Image(listOfETCIImages.get(args.idx))
-    SMCI_image = ee.Image(listOfSMCIImages.get(args.idx))
+#     ## PCA
+#     st.subheader('Compute CMDI')
+#     VCI_image = ee.Image(listOfVCIImages.get(args.idx))
+#     TCI_image = ee.Image(listOfTCIImages.get(args.idx))
+#     PCI_image = ee.Image(listOfPCIImages.get(args.idx))
+#     ETCI_image = ee.Image(listOfETCIImages.get(args.idx))
+#     SMCI_image = ee.Image(listOfSMCIImages.get(args.idx))
     
-    image = ee.Image.cat([VCI_image.clip(roi), 
-                      TCI_image.clip(roi),
-                      PCI_image.clip(roi),
-                      ETCI_image.clip(roi),
-                      SMCI_image.clip(roi)])
+#     image = ee.Image.cat([VCI_image.clip(roi), 
+#                       TCI_image.clip(roi),
+#                       PCI_image.clip(roi),
+#                       ETCI_image.clip(roi),
+#                       SMCI_image.clip(roi)])
     
-    # Get the PCs at the specified scale and in the specified region
-    pcImage, eigenVectors = pca.getPrincipalComponents(image, args.scale, roi, args.bandNames)    
-    eigenVectors_np = np.array(eigenVectors.getInfo())[0]
-    contrib_coeff = eigenVectors_np**2
-    weights = [math.ceil(i*100)/100 for i in contrib_coeff]
+#     # Get the PCs at the specified scale and in the specified region
+#     pcImage, eigenVectors = pca.getPrincipalComponents(image, args.scale, roi, args.bandNames)    
+#     eigenVectors_np = np.array(eigenVectors.getInfo())[0]
+#     contrib_coeff = eigenVectors_np**2
+#     weights = [math.ceil(i*100)/100 for i in contrib_coeff]
     
-    display_weights = st.button('Weights')
-    if display_weights:
-        st.write(pd.DataFrame({
-            'Input Indices': ['VCI', 'TCI', 'PCI', 'ETCI', 'ETCI'],
-            'Contribution Weights': list(map(lambda x: "%.2f" % x, weights)), 
-        }))
+#     display_weights = st.button('Weights')
+#     if display_weights:
+#         st.write(pd.DataFrame({
+#             'Input Indices': ['VCI', 'TCI', 'PCI', 'ETCI', 'ETCI'],
+#             'Contribution Weights': list(map(lambda x: "%.2f" % x, weights)), 
+#         }))
 
     
-    # compute CMDI
-    CMDI_image = CMDI.compute_CMDI(VCI_image, TCI_image, PCI_image, ETCI_image, SMCI_image, weights, roi)
+#     # compute CMDI
+#     CMDI_image = CMDI.compute_CMDI(VCI_image, TCI_image, PCI_image, ETCI_image, SMCI_image, weights, roi)
     
-    input_indcies = (
-        "CMDI",
-        "ETCI",
-        "PCI",
-        "SMCI",
-        "TCI",
-        "VCI"
-    )
-    input_index = st.radio('choose index', input_indcies, horizontal=True, label_visibility="collapsed")
-    display_input_index = st.button('Display '+ input_index)
+#     input_indcies = (
+#         "CMDI",
+#         "ETCI",
+#         "PCI",
+#         "SMCI",
+#         "TCI",
+#         "VCI"
+#     )
+#     input_index = st.radio('choose index', input_indcies, horizontal=True, label_visibility="collapsed")
+#     display_input_index = st.button('Display '+ input_index)
     
-    if display_input_index:
-        if input_index == 'VCI':
-            with st.spinner('Wait for it...'):
-                Map = geemap.Map(zoom = 6, plugin_Draw=True, Draw_export=False)
-                Map.centerObject(roi, 6)
-                Map.addLayer(VCI_image.clip(roi), args.vciVis, 'VCI, ' + d.strftime("%B %Y")) 
-                Map.add_colorbar(args.vciVis, label="VCI", orientation="vertical", layer_name="VCI, " + d.strftime("%B %Y"))
-                Map.to_streamlit()
+#     if display_input_index:
+#         if input_index == 'VCI':
+#             with st.spinner('Wait for it...'):
+#                 Map = geemap.Map(zoom = 6, plugin_Draw=True, Draw_export=False)
+#                 Map.centerObject(roi, 6)
+#                 Map.addLayer(VCI_image.clip(roi), args.vciVis, 'VCI, ' + d.strftime("%B %Y")) 
+#                 Map.add_colorbar(args.vciVis, label="VCI", orientation="vertical", layer_name="VCI, " + d.strftime("%B %Y"))
+#                 Map.to_streamlit()
     
-        elif input_index == 'TCI':
-            with st.spinner('Wait for it...'):
-                Map = geemap.Map(zoom = 6, plugin_Draw=True, Draw_export=False)
-                Map.centerObject(roi, 6)
-                Map.addLayer(TCI_image.clip(roi), args.tciVis, 'TCI, ' + d.strftime("%B %Y")) 
-                Map.add_colorbar(args.tciVis, label="TCI", orientation="vertical", layer_name="TCI, " + d.strftime("%B %Y"))
-                Map.to_streamlit()
+#         elif input_index == 'TCI':
+#             with st.spinner('Wait for it...'):
+#                 Map = geemap.Map(zoom = 6, plugin_Draw=True, Draw_export=False)
+#                 Map.centerObject(roi, 6)
+#                 Map.addLayer(TCI_image.clip(roi), args.tciVis, 'TCI, ' + d.strftime("%B %Y")) 
+#                 Map.add_colorbar(args.tciVis, label="TCI", orientation="vertical", layer_name="TCI, " + d.strftime("%B %Y"))
+#                 Map.to_streamlit()
 
-        elif input_index == 'PCI':
-            with st.spinner('Wait for it...'):
-                Map = geemap.Map(zoom = 6, plugin_Draw=True, Draw_export=False)
-                Map.centerObject(roi, 6)
-                Map.addLayer(PCI_image.clip(roi), args.pciVis, 'PCI, ' + d.strftime("%B %Y")) 
-                Map.add_colorbar(args.vciVis, label="PCI", orientation="vertical", layer_name="PCI, " + d.strftime("%B %Y"))
-                Map.to_streamlit()
+#         elif input_index == 'PCI':
+#             with st.spinner('Wait for it...'):
+#                 Map = geemap.Map(zoom = 6, plugin_Draw=True, Draw_export=False)
+#                 Map.centerObject(roi, 6)
+#                 Map.addLayer(PCI_image.clip(roi), args.pciVis, 'PCI, ' + d.strftime("%B %Y")) 
+#                 Map.add_colorbar(args.vciVis, label="PCI", orientation="vertical", layer_name="PCI, " + d.strftime("%B %Y"))
+#                 Map.to_streamlit()
 
-        elif input_index == 'ETCI':
-            with st.spinner('Wait for it...'):
-                Map = geemap.Map(zoom = 6, plugin_Draw=True, Draw_export=False)
-                Map.centerObject(roi, 6)
-                Map.addLayer(ETCI_image.clip(roi), args.etciVis, 'ETCI,' + d.strftime("%B %Y")) 
-                Map.add_colorbar(args.etciVis, label="ETCI", orientation="vertical", layer_name="ETCI, " + d.strftime("%B %Y"))
-                Map.to_streamlit()
+#         elif input_index == 'ETCI':
+#             with st.spinner('Wait for it...'):
+#                 Map = geemap.Map(zoom = 6, plugin_Draw=True, Draw_export=False)
+#                 Map.centerObject(roi, 6)
+#                 Map.addLayer(ETCI_image.clip(roi), args.etciVis, 'ETCI,' + d.strftime("%B %Y")) 
+#                 Map.add_colorbar(args.etciVis, label="ETCI", orientation="vertical", layer_name="ETCI, " + d.strftime("%B %Y"))
+#                 Map.to_streamlit()
             
-        elif input_index == 'SMCI':
-            with st.spinner('Wait for it...'):
-                Map = geemap.Map(zoom = 6, plugin_Draw=True, Draw_export=False)
-                Map.centerObject(roi, 6)
-                Map.addLayer(SMCI_image.clip(roi), args.smciVis, 'SMCI, ' + d.strftime("%B %Y")) 
-                Map.add_colorbar(args.smciVis, label="SMCI", orientation="vertical", layer_name="SMCI, " + d.strftime("%B %Y"))
-                Map.to_streamlit()
+#         elif input_index == 'SMCI':
+#             with st.spinner('Wait for it...'):
+#                 Map = geemap.Map(zoom = 6, plugin_Draw=True, Draw_export=False)
+#                 Map.centerObject(roi, 6)
+#                 Map.addLayer(SMCI_image.clip(roi), args.smciVis, 'SMCI, ' + d.strftime("%B %Y")) 
+#                 Map.add_colorbar(args.smciVis, label="SMCI", orientation="vertical", layer_name="SMCI, " + d.strftime("%B %Y"))
+#                 Map.to_streamlit()
                    
 
-        elif input_index == 'CMDI':
-            with st.spinner('Wait for it...'):
-                Map = geemap.Map(zoom = 6, plugin_Draw=True, Draw_export=False)
-                Map.centerObject(roi, 6)
-                Map.addLayer(CMDI_image.clip(roi), args.cdmiVis, 'CMDI,' + d.strftime("%B %Y")) 
-                Map.add_colorbar(args.cdmiVis, label="CMDI", orientation="vertical", layer_name="CMDI, " + d.strftime("%B %Y"))
-                Map.to_streamlit()
+#         elif input_index == 'CMDI':
+#             with st.spinner('Wait for it...'):
+#                 Map = geemap.Map(zoom = 6, plugin_Draw=True, Draw_export=False)
+#                 Map.centerObject(roi, 6)
+#                 Map.addLayer(CMDI_image.clip(roi), args.cdmiVis, 'CMDI,' + d.strftime("%B %Y")) 
+#                 Map.add_colorbar(args.cdmiVis, label="CMDI", orientation="vertical", layer_name="CMDI, " + d.strftime("%B %Y"))
+#                 Map.to_streamlit()
                 
-    end_time = time.time()
-    execution_time = end_time - start_time
-    st.success('Execution Time: ' + str("%.2f" % execution_time) + ' seconds', icon="✅")
+#     end_time = time.time()
+#     execution_time = end_time - start_time
+#     st.success('Execution Time: ' + str("%.2f" % execution_time) + ' seconds', icon="✅")

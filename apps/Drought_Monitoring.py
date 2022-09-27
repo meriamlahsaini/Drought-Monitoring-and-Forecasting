@@ -1,4 +1,5 @@
 import streamlit as st
+# import the necessary libraries
 import ee, geemap
 geemap.ee_initialize()
 #     import geemap.foliumap as geemap: don't use it, it messes up with the API initialization
@@ -9,16 +10,17 @@ import datetime as dt
 import pandas as pd
 import numpy as np
 from drought_monitoring import dataset, pca, CMDI
-# from dataset import GetIndices
-# from pca import getPrincipalComponents
-# from CMDI import compute_CMDI
 from args import get_main_args
 
 
 def app():
     st.title("Drought Monitoring")
+    args = get_main_args()
     
     ## ROI
+    st.subheader("Define ROI")
+    start_time = time.time()
+    
     countries = (
         "Afghanistan",
         "Burkina Faso",
@@ -28,14 +30,7 @@ def app():
         "Senegal",
         "Zambia"
     )
-    
-    # import the necessary libraries
-    args = get_main_args()
-    
-    st.subheader("Define ROI")
-    start_time = time.time()
-#     roi_bar = st.progress(0)
-    
+
     country = st.selectbox("Country", countries, label_visibility="collapsed")
     if country == "Afghanistan":
         roi = ee.FeatureCollection(args.afghanistan_dir)
@@ -64,18 +59,30 @@ def app():
     ## INPUT INDICES: VCI, TCI, PCI, ETCI, SMCI
     st.subheader('Compute Input Indices')
     season = st.radio('choose season', ('Growing Season', 'Sowing Season'), horizontal=True, label_visibility="collapsed")
+    args.season = season
     if season == 'Growing Season':
+        month = ['January', 'February', 'March', 'April']
+        year = ['2016', '2017', '2018', '2019', '2020', '2021', '2022']
+        
         st.write('The growing season spans January to April from 2016 to 2022. Please select one of these dates')
-        st.write({'Month': ['January', 'February', 'March', 'April'],
-                  'Year': ['2016', '2017', '2018', '2019', '2020', '2021', '2022']})       
-
+        st.write({'Month': month,
+                  'Year': year})
+        d = st.date_input(
+            "Select a month and a year",
+            value=dt.date(2016, 1, 1), min_value=dt.date(2016, 1, 1),max_value=dt.date(2022, 4, 30), label_visibility="collapsed")
+ 
     else:
+        month = ['November', 'December']
+        year = ['2016', '2017', '2018', '2019', '2020', '2021', '2022']
         st.write('The sowing season spans Novermber to December from 2016 to 2021. Please select one of these dates')
-        st.write({'Month': ['November', 'December'],
-                  'Year': ['2016', '2017', '2018', '2019', '2020', '2021']})  
+        st.write({'Month': month,
+                  'Year': year})  
+        d = st.date_input(
+            "Select a month and a year",
+                value=dt.date(2016, 11, 1), min_value=dt.date(2016, 11, 1), max_value=dt.date(2022, 12, 31), label_visibility="collapsed")
 
     
-    args.season = season
+    
     TCI = dataset.GetIndices(args, roi, index='TCI', sum=False).get_scaled_index()
     VCI = dataset.GetIndices(args, roi, index='VCI', sum=False).get_scaled_index()
     ETCI = dataset.GetIndices(args, roi, index='ETCI', sum=True).get_scaled_index()
@@ -88,18 +95,18 @@ def app():
     listOfETCIImages = ETCI.toList(ETCI.size())
     listOfSMCIImages = SMCI.toList(SMCI.size())
 
-    if args.season == 'Growing Season':
-        month = ['January', 'February', 'March', 'April']
-        year = ['2016', '2017', '2018', '2019', '2020', '2021', '2022']
-        d = st.date_input(
-            "Select a month and a year",
-            value=dt.date(2016, 1, 1), min_value=dt.date(2016, 1, 1),max_value=dt.date(2022, 4, 30), label_visibility="collapsed")
-    else:
-        month = ['November', 'December']
-        year = ['2016', '2017', '2018', '2019', '2020', '2021', '2022']
-        d = st.date_input(
-            "Select a month and a year",
-                value=dt.date(2016, 11, 1), min_value=dt.date(2016, 11, 1), max_value=dt.date(2022, 12, 31), label_visibility="collapsed")
+#     if args.season == 'Growing Season':
+#         month = ['January', 'February', 'March', 'April']
+#         year = ['2016', '2017', '2018', '2019', '2020', '2021', '2022']
+#         d = st.date_input(
+#             "Select a month and a year",
+#             value=dt.date(2016, 1, 1), min_value=dt.date(2016, 1, 1),max_value=dt.date(2022, 4, 30), label_visibility="collapsed")
+#     else:
+#         month = ['November', 'December']
+#         year = ['2016', '2017', '2018', '2019', '2020', '2021', '2022']
+#         d = st.date_input(
+#             "Select a month and a year",
+#                 value=dt.date(2016, 11, 1), min_value=dt.date(2016, 11, 1), max_value=dt.date(2022, 12, 31), label_visibility="collapsed")
         
     dates = [i+' '+j for j in year for i in month]
     if d.strftime("%B %Y") not in dates:

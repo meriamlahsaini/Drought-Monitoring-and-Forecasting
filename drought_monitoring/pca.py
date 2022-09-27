@@ -1,6 +1,8 @@
 import ee
+import streamlit as st
 
 # This helper function returns a list of new band names.
+@st.cache
 def getNewBandNames(prefix, bandNames):
   seq = ee.List.sequence(1, len(bandNames))
   return seq.map(lambda b: ee.String(prefix).cat(ee.Number(b).int().format()))
@@ -9,7 +11,7 @@ def getNewBandNames(prefix, bandNames):
 # This function accepts mean centered imagery, a scale and
 # a region in which to perform the analysis.  It returns the
 # Principal Components (PC) in the region as a new image.
-
+@st.cache
 def getPrincipalComponents(centered, scale, region, bandNames):
   # Collapse the bands of the image into a 1D array per pixel.
   arrays = centered.toArray()

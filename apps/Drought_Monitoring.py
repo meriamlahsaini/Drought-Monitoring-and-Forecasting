@@ -1,5 +1,4 @@
 import streamlit as st
-# import the necessary libraries
 import ee, geemap
 geemap.ee_initialize()
 #     import geemap.foliumap as geemap: don't use it, it messes up with the API initialization
@@ -95,18 +94,6 @@ def app():
     listOfETCIImages = ETCI.toList(ETCI.size())
     listOfSMCIImages = SMCI.toList(SMCI.size())
 
-#     if args.season == 'Growing Season':
-#         month = ['January', 'February', 'March', 'April']
-#         year = ['2016', '2017', '2018', '2019', '2020', '2021', '2022']
-#         d = st.date_input(
-#             "Select a month and a year",
-#             value=dt.date(2016, 1, 1), min_value=dt.date(2016, 1, 1),max_value=dt.date(2022, 4, 30), label_visibility="collapsed")
-#     else:
-#         month = ['November', 'December']
-#         year = ['2016', '2017', '2018', '2019', '2020', '2021', '2022']
-#         d = st.date_input(
-#             "Select a month and a year",
-#                 value=dt.date(2016, 11, 1), min_value=dt.date(2016, 11, 1), max_value=dt.date(2022, 12, 31), label_visibility="collapsed")
         
     dates = [i+' '+j for j in year for i in month]
     if d.strftime("%B %Y") not in dates:
@@ -124,7 +111,6 @@ def app():
 
             
     ## PCA
-    gc.collect()
     image = ee.Image.cat([VCI_image.clip(roi), 
                           TCI_image.clip(roi),
                           PCI_image.clip(roi),

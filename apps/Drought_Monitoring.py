@@ -206,4 +206,3 @@ def app():
     end_time = time.time()
     execution_time = end_time - start_time
     st.success('Execution Time'+str(round("%.2f" % execution_time)+' seconds', icon="✅")
-    

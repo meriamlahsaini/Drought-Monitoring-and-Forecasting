@@ -82,13 +82,13 @@ def app():
                 value=dt.date(2016, 11, 1), min_value=dt.date(2016, 11, 1), max_value=dt.date(2021, 12, 31), label_visibility="collapsed")
 
     
-    @st.cache
+    
     TCI = dataset.GetIndices(args, roi, index='TCI', sum=False).get_scaled_index()
     VCI = dataset.GetIndices(args, roi, index='VCI', sum=False).get_scaled_index()
     ETCI = dataset.GetIndices(args, roi, index='ETCI', sum=True).get_scaled_index()
     PCI  = dataset.GetIndices(args, roi, index='PCI', sum=True).get_scaled_index()
     SMCI = dataset.GetIndices(args, roi, index='SMCI', sum=False).get_scaled_index()
-    @st.cache
+    
     listOfVCIImages = VCI.toList(VCI.size())
     listOfTCIImages = TCI.toList(TCI.size())
     listOfPCIImages = PCI.toList(PCI.size())

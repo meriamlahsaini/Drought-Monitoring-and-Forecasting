@@ -14,6 +14,7 @@ from args import get_main_args
 
 def app():
     st.title("Drought Monitoring")
+    
     args = get_main_args()
 
 
@@ -59,6 +60,7 @@ def app():
     season = st.radio('choose season', ('Growing Season', 'Sowing Season'), horizontal=True, label_visibility="collapsed")
     
     args.season = season
+    st.write(args.season)
     if season == 'Growing Season':
         month = ['January', 'February', 'March', 'April']
         year = ['2016', '2017', '2018', '2019', '2020', '2021', '2022']
@@ -78,10 +80,9 @@ def app():
                   'Year': year})  
         d = st.date_input(
             "Select a month and a year",
-                value=dt.date(2016, 11, 1), min_value=dt.date(2016, 11, 1), max_value=dt.date(2021, 12, 31), label_visibility="collapsed")
+             value=dt.date(2016, 11, 1), min_value=dt.date(2016, 11, 1), max_value=dt.date(2021, 12, 31), label_visibility="collapsed")
 
     
-  
     TCI = dataset.GetIndices(args, roi, index='TCI', sum=False).get_scaled_index()
     VCI = dataset.GetIndices(args, roi, index='VCI', sum=False).get_scaled_index()
     ETCI = dataset.GetIndices(args, roi, index='ETCI', sum=True).get_scaled_index()

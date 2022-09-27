@@ -145,7 +145,6 @@ def app():
 
     
     # compute CMDI
-    @st.experimental_singleton
     CMDI_image = CMDI.compute_CMDI(VCI_image, TCI_image, PCI_image, ETCI_image, SMCI_image, weights, roi)
     
     if display_input_index:

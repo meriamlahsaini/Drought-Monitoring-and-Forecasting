@@ -210,6 +210,7 @@ def app():
                 Map.addLayer(CMDI_image.clip(roi), args.cdmiVis, 'CMDI,' + d.strftime("%B %Y")) 
                 Map.add_colorbar(args.cdmiVis, label="CMDI", orientation="vertical", layer_name="CMDI, " + d.strftime("%B %Y"))
                 Map.to_streamlit()
+                
     end_time = time.time()
     execution_time = end_time - start_time
     st.success('Execution Time: ' + str("%.2f" % execution_time) + ' seconds', icon="✅")

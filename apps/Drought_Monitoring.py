@@ -205,4 +205,4 @@ def app():
                 Map.to_streamlit()
     end_time = time.time()
     execution_time = end_time - start_time
-    st.success('Execution Time'+str(round("%.2f" % execution_time)+' seconds', icon="✅")
+    st.success('Execution Time'+str(round("%.2f" % execution_time))+' seconds', icon="✅")

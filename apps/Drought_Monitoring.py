@@ -15,10 +15,7 @@ from args import get_main_args
 def app():
     st.title("Drought Monitoring")
     args = get_main_args()
-    
-    #############################################################################################
-    ######################################## App items ##########################################
-    #############################################################################################
+
 
     st.subheader("Define ROI")
     start_time = time.time()
@@ -33,29 +30,7 @@ def app():
         "Zambia"
     )
 
-    country = st.selectbox("Country", countries, label_visibility="collapsed")
-    display_boundary_map = st.button('Display Boundary Map')
-    
-    ## INPUT INDICES: VCI, TCI, PCI, ETCI, SMCI
-    st.subheader('Compute Input Indices')
-    season = st.radio('choose season', ('Growing Season', 'Sowing Season'), horizontal=True, label_visibility="collapsed")
-    st.subheader('Compute CMDI')
-    display_weights = st.button('Weights')
-    
-    input_indcies = (
-        "CMDI",
-        "ETCI",
-        "PCI",
-        "SMCI",
-        "TCI",
-        "VCI"
-    )
-    input_index = st.radio('choose index', input_indcies, horizontal=True, label_visibility="collapsed")
-    display_input_index = st.button('Display '+ input_index)
-    
-    
-    
-    
+    country = st.selectbox("Country", countries, label_visibility="collapsed")    
     if country == "Afghanistan":
         roi = ee.FeatureCollection(args.afghanistan_dir)
     elif country == "Burkina Faso":
@@ -70,7 +45,8 @@ def app():
         roi = ee.FeatureCollection(args.senegal_dir)      
     elif country == "Zambia":
         roi = ee.FeatureCollection(args.zambia_dir)
-    
+        
+    display_boundary_map = st.button('Display Boundary Map')    
     if display_boundary_map: 
         with st.spinner('Wait for it...'):
             Map = geemap.Map(plugin_Draw=True, Draw_export=False)
@@ -78,7 +54,10 @@ def app():
             Map.addLayer(roi, {}, country +'Boundary Map') 
             Map.to_streamlit()
     
-        
+    ## INPUT INDICES: VCI, TCI, PCI, ETCI, SMCI
+    st.subheader('Compute Input Indices')
+    season = st.radio('choose season', ('Growing Season', 'Sowing Season'), horizontal=True, label_visibility="collapsed")
+    
     args.season = season
     if season == 'Growing Season':
         month = ['January', 'February', 'March', 'April']
@@ -102,7 +81,7 @@ def app():
                 value=dt.date(2016, 11, 1), min_value=dt.date(2016, 11, 1), max_value=dt.date(2021, 12, 31), label_visibility="collapsed")
 
     
-    
+  
     TCI = dataset.GetIndices(args, roi, index='TCI', sum=False).get_scaled_index()
     VCI = dataset.GetIndices(args, roi, index='VCI', sum=False).get_scaled_index()
     ETCI = dataset.GetIndices(args, roi, index='ETCI', sum=True).get_scaled_index()
@@ -123,38 +102,49 @@ def app():
     else:
         args.idx =  tuple(dates).index(d.strftime("%B %Y"))
 
+
+        
+    ## PCA
+    st.subheader('Compute CMDI')
     VCI_image = ee.Image(listOfVCIImages.get(args.idx))
     TCI_image = ee.Image(listOfTCIImages.get(args.idx))
     PCI_image = ee.Image(listOfPCIImages.get(args.idx))
     ETCI_image = ee.Image(listOfETCIImages.get(args.idx))
     SMCI_image = ee.Image(listOfSMCIImages.get(args.idx))
-   
-
-            
-    ## PCA
-    image = ee.Image.cat([VCI_image.clip(roi), 
-                          TCI_image.clip(roi),
-                          PCI_image.clip(roi),
-                          ETCI_image.clip(roi),
-                          SMCI_image.clip(roi)]) 
     
-#     st.subheader('Compute CMDI')
+    image = ee.Image.cat([VCI_image.clip(roi), 
+                      TCI_image.clip(roi),
+                      PCI_image.clip(roi),
+                      ETCI_image.clip(roi),
+                      SMCI_image.clip(roi)])
+    
     # Get the PCs at the specified scale and in the specified region
     pcImage, eigenVectors = pca.getPrincipalComponents(image, args.scale, roi, args.bandNames)    
     eigenVectors_np = np.array(eigenVectors.getInfo())[0]
     contrib_coeff = eigenVectors_np**2
     weights = [math.ceil(i*100)/100 for i in contrib_coeff]
+    
+    display_weights = st.button('Weights')
     if display_weights:
         st.write(pd.DataFrame({
             'Input Indices': ['VCI', 'TCI', 'PCI', 'ETCI', 'ETCI'],
             'Contribution Weights': list(map(lambda x: "%.2f" % x, weights)), 
         }))
 
-                    
-
     
     # compute CMDI
     CMDI_image = CMDI.compute_CMDI(VCI_image, TCI_image, PCI_image, ETCI_image, SMCI_image, weights, roi)
+    
+    input_indcies = (
+        "CMDI",
+        "ETCI",
+        "PCI",
+        "SMCI",
+        "TCI",
+        "VCI"
+    )
+    input_index = st.radio('choose index', input_indcies, horizontal=True, label_visibility="collapsed")
+    display_input_index = st.button('Display '+ input_index)
     
     if display_input_index:
         if input_index == 'VCI':

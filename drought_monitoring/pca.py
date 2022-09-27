@@ -1,5 +1,5 @@
 import ee
-# import streamlit as st
+import streamlit as st
 
 # This helper function returns a list of new band names.
 @st.experimental_memo

@@ -33,7 +33,7 @@ def app():
     args = get_main_args()
     
     st.subheader("Define ROI")
-    roi_st = time.time()
+    st = time.time()
 #     roi_bar = st.progress(0)
     
     country = st.selectbox("Country", countries, label_visibility="collapsed")
@@ -203,5 +203,5 @@ def app():
                 Map.add_colorbar(args.cdmiVis, label="CMDI", orientation="vertical", layer_name="CMDI, " + d.strftime("%B %Y"))
                 Map.to_streamlit()
     et = time.time()
-    execution_time = roi_et - roi_st
+    execution_time = et - st
     st.success('Execution Time'+str(execution_time), icon="✅")

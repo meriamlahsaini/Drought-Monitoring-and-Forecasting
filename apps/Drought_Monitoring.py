@@ -73,22 +73,22 @@ def app():
  
     else:
         month = ['November', 'December']
-        year = ['2016', '2017', '2018', '2019', '2020', '2021', '2022']
+        year = ['2016', '2017', '2018', '2019', '2020', '2021']
         st.write('The sowing season spans Novermber to December from 2016 to 2021. Please select one of these dates')
         st.write({'Month': month,
                   'Year': year})  
         d = st.date_input(
             "Select a month and a year",
-                value=dt.date(2016, 11, 1), min_value=dt.date(2016, 11, 1), max_value=dt.date(2022, 12, 31), label_visibility="collapsed")
+                value=dt.date(2016, 11, 1), min_value=dt.date(2016, 11, 1), max_value=dt.date(2021, 12, 31), label_visibility="collapsed")
 
     
-    
+    @st.cache
     TCI = dataset.GetIndices(args, roi, index='TCI', sum=False).get_scaled_index()
     VCI = dataset.GetIndices(args, roi, index='VCI', sum=False).get_scaled_index()
     ETCI = dataset.GetIndices(args, roi, index='ETCI', sum=True).get_scaled_index()
     PCI  = dataset.GetIndices(args, roi, index='PCI', sum=True).get_scaled_index()
     SMCI = dataset.GetIndices(args, roi, index='SMCI', sum=False).get_scaled_index()
-
+    @st.cache
     listOfVCIImages = VCI.toList(VCI.size())
     listOfTCIImages = TCI.toList(TCI.size())
     listOfPCIImages = PCI.toList(PCI.size())
@@ -212,4 +212,4 @@ def app():
                 Map.to_streamlit()
     end_time = time.time()
     execution_time = end_time - start_time
-    st.success('Execution Time' + str("%.2f" % execution_time) + ' seconds', icon="✅")
+    st.success('Execution Time: ' + str("%.2f" % execution_time) + ' seconds', icon="✅")

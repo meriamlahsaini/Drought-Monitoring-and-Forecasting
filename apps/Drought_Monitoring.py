@@ -58,6 +58,8 @@ def app():
     ## INPUT INDICES: VCI, TCI, PCI, ETCI, SMCI
     st.subheader('Compute Input Indices')
     season = st.radio('choose season', ('Growing Season', 'Sowing Season'), horizontal=True, label_visibility="collapsed")
+    args.season = season
+    st.write(args.season)
     
     if season == 'Growing Season':
         month = ['January', 'February', 'March', 'April']
@@ -79,9 +81,6 @@ def app():
         d = st.date_input(
             "Select a month and a year",
              value=dt.date(2016, 11, 1), min_value=dt.date(2016, 11, 1), max_value=dt.date(2021, 12, 31), label_visibility="collapsed")
-
-    args.season = season
-    st.write(args.season)
     
 #     TCI = dataset.GetIndices(args, roi, index='TCI', sum=False).get_scaled_index()
 #     VCI = dataset.GetIndices(args, roi, index='VCI', sum=False).get_scaled_index()

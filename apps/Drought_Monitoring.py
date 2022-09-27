@@ -153,7 +153,7 @@ def app():
     
     # compute CMDI
     CMDI_image = CMDI.compute_CMDI(VCI_image, TCI_image, PCI_image, ETCI_image, SMCI_image, weights, roi)
-     g
+    
     if display_input_index:
         if input_index == 'VCI':
             with st.spinner('Wait for it...'):
